@@ -1,0 +1,167 @@
+{
+  "active": false,
+  "connections": {
+    "Receber Busca do Painel": {
+      "main": [
+        [
+          {
+            "node": "SetQuery",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SetQuery": {
+      "main": [
+        [
+          {
+            "node": "BuscaSerpApi",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BuscaSerpApi": {
+      "main": [
+        [
+          {
+            "node": "Code in Python (Beta)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-28T15:51:41.342Z",
+  "id": "LiZ5ppLPlsShVGgP",
+  "isArchived": false,
+  "meta": null,
+  "name": "Formulário Extrair Contatos",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "1c563364-e6b1-474c-81bd-0fe6ceb6327d",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "a0ecf362-55d0-4843-ad78-8449365efac3",
+      "name": "Receber Busca do Painel",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "1c563364-e6b1-474c-81bd-0fe6ceb6327d"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "query",
+              "value": "=\"{{ $json.body.profTexto }} {{ $json.body.espTexto }}\" \"{{ $json.body.cidade }} {{ $json.body.estado }}\""
+            },
+            {
+              "name": "local",
+              "value": "={{ $json.body.cidade }}, {{ $json.body.estado }}, Brazil"
+            },
+            {
+              "name": "contatos_array",
+              "value": "=[Array: [\"instagram\", \"whatsapp\"]]"
+            }
+          ]
+        },
+        "options": {
+          "dotNotation": false
+        }
+      },
+      "id": "a0c908ba-0a21-4fc1-864e-ad1336bea586",
+      "name": "SetQuery",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        240,
+        0
+      ],
+      "alwaysOutputData": false,
+      "executeOnce": false,
+      "retryOnFail": false
+    },
+    {
+      "parameters": {
+        "url": "https://serpapi.com/search.json",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "serpApi",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "={{ $json.query }}"
+            },
+            {
+              "name": "engine",
+              "value": "google"
+            },
+            {
+              "name": "num",
+              "value": "10"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        544,
+        0
+      ],
+      "id": "301ce7c9-006f-4154-8c3a-a8cea820f250",
+      "name": "BuscaSerpApi"
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "# --- SCRIPT FINAL E BLINDADO (Apenas 1 Saída JSON - Python) ---\n\nimport json\nimport re\n\n# Função auxiliar para garantir o retorno no formato esperado pelo n8n\ndef format_output(resultados):\n    \"\"\"Retorna o resultado no formato de array de objetos JSON esperado pelo n8n.\"\"\"\n    return [{\n        'json': {\n            'resultados': resultados\n        }\n    }]\n\n# 1. Obter os dados de entrada (Assumindo modo \"Run Once\" no n8n)\ntry:\n    # Encontra o item vindo do BuscaSerpApi\n    serp_api_body = None\n    contatos_desejados = []\n    for item in items:\n        source = item['json'].get('source', '')\n        if source == 'BuscaSerpApi':\n            serp_api_body = item['json']\n        elif source == 'SetQuery':\n            contatos_desejados = item['json'].get('contatos_array', [])\n    if serp_api_body is None:\n        return format_output([{'type': 'error', 'value': 'Busca inválida ou sem contatos selecionados.'}])\nexcept Exception:\n    # Se a busca falhou ou não há dados iniciais\n    return format_output([{'type': 'error', 'value': 'Busca inválida ou sem contatos selecionados.'}])\n\n# Se a lista de contatos estiver vazia\nif not contatos_desejados:\n    return format_output([{'type': 'error', 'value': 'Busca inválida ou sem contatos selecionados.'}])\n\n# 3. Obter e unificar resultados\norganic_results = serp_api_body.get('organic_results', [])\n# CORREÇÃO: Acessar o array 'places' dentro de 'local_results'\nlocal_places = serp_api_body.get('local_results', {}).get('places', [])\n\ntodos_resultados = []\n\n# Funções de Unificação (Seção 4)\nfor result in organic_results:\n    todos_resultados.append({\n        'link': result.get('link'),\n        # Texto de busca: snippet + título + link\n        'texto': f\"{result.get('snippet', '')} {result.get('title', '')} {result.get('link', '')}\",\n        'fonte': result.get('source'),\n        'telefone': None,\n        'nome': result.get('title'),\n    })\n\n# CORREÇÃO: Iterar sobre o array 'localPlaces'\nfor result in local_places:\n    # Tenta pegar o website no campo 'links'\n    website_link = result.get('links', {}).get('website') or result.get('link')\n\n    todos_resultados.append({\n        'link': website_link,\n        # Texto de busca: title + address + phone + website\n        'texto': f\"{result.get('title', '')} {result.get('address', '')} {result.get('phone', '')} {website_link or ''}\",\n        'fonte': 'Local Result',\n        'telefone': result.get('phone'),\n        'nome': result.get('title'),\n    })\n\n# 4. Se não houver resultados de busca no Google\nif not todos_resultados:\n    return format_output([{'type': 'info', 'value': 'Nenhum resultado encontrado na busca.'}])\n\n# 5. Definir REGEX (Seção 5)\nregex_map = {\n    'instagram': re.compile(r'https?:\\/\\/(www\\.)?instagram\\.com\\/[\\w\\.]+\\/?', re.IGNORECASE),\n    'whatsapp': re.compile(r'https?:\\/\\/(wa\\.me|api\\.whatsapp\\.com)\\/[^\"\\s<]+', re.IGNORECASE),\n    'email': re.compile(r'[\\w\\.-]+@[\\w\\.-]+\\.\\w+', re.IGNORECASE),\n    'linkedin': re.compile(r'https?:\\/\\/(www\\.)?linkedin\\.com\\/(in|company)\\/[^\"\\s<]+', re.IGNORECASE),\n    'telefone': re.compile(r'(\\+55\\s?)?\\(?\\d{2}\\)?\\s?\\d{4,5}-?\\d{4}', re.IGNORECASE),\n    'website': re.compile(r'https?:\\/\\/[^\"\\s<]+', re.IGNORECASE),\n}\n\n# 6. Inicializar estruturas de saída (Foco apenas no Flat)\ncontatos_encontrados_flat = []\ncontatos_unicos_flat = set()\n\n# 7. Loop principal: extrair contatos (Seção 7)\nfor result in todos_resultados:\n    \n    # Garante que o texto existe para buscar\n    texto_busca = result.get('texto', '')\n    \n    for tipo in contatos_desejados:\n        valor_encontrado = None\n        \n        # 1. Tenta dados estruturados (Telefone)\n        if tipo == 'telefone' and result.get('telefone'):\n            valor_encontrado = result['telefone']\n        \n        # 2. Tenta REGEX no texto completo\n        regex = regex_map.get(tipo)\n        if regex and not valor_encontrado:\n            # Não tenta regex se o telefone já foi encontrado nos dados estruturados\n            if tipo == 'telefone' and result.get('telefone'):\n                continue\n                \n            matches = regex.search(texto_busca)\n            if matches:\n                valor = matches.group(0)\n                \n                # Limpeza específica para Instagram\n                if tipo == 'instagram':\n                    # Remove query params e barra final\n                    valor = valor.split('?')[0].rstrip('/')\n                \n                # Se for website, garantimos que não é uma rede social (opcional)\n                if tipo == 'website':\n                    if re.search(r'instagram\\.com|wa\\.me|api\\.whatsapp\\.com|linkedin\\.com', valor, re.IGNORECASE):\n                        continue\n                \n                valor_encontrado = valor\n\n        # 3. Popular a saída Flat (para exibição)\n        if valor_encontrado:\n            # Garante que não haja duplicatas\n            if valor_encontrado not in contatos_unicos_flat:\n                contatos_encontrados_flat.append({'type': tipo, 'value': valor_encontrado})\n                contatos_unicos_flat.add(valor_encontrado)\n\n\n# 8. Preparar o JSON de saída\ncontatos_encontrados_json = contatos_encontrados_flat\n\n# Se não encontrou NADA\nif not contatos_encontrados_flat:\n    contatos_encontrados_json = [{'type': 'info', 'value': 'Nenhum contato encontrado na busca.'}]\n\n\n# 9. Retornar a única saída (Frontend / JSON)\nreturn format_output(contatos_encontrados_json)"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        832,
+        0
+      ],
+      "id": "51aff8e5-7e7a-4629-b799-ef5a3af1626c",
+      "name": "Code in Python (Beta)"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-10-28T15:51:41.342Z",
+      "createdAt": "2025-10-28T15:51:41.342Z",
+      "role": "workflow:owner",
+      "workflowId": "LiZ5ppLPlsShVGgP",
+      "projectId": "Zl3u1vsJTIYoa3dk"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-28T15:51:41.342Z",
+  "versionId": "2cd24697-3b59-4df3-a6e5-0cac865229ec"
+}
