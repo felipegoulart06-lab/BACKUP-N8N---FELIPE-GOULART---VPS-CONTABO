@@ -1,0 +1,547 @@
+{
+  "active": false,
+  "connections": {
+    "RECUPERA ID BOTÃO 1": {
+      "main": [
+        [
+          {
+            "node": "RESPOSTA BOTÃO 1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RECUPERA ID BOTÃO 2": {
+      "main": [
+        [
+          {
+            "node": "RESPOSTA BOTÃO 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RECUPERA ID BOTÃO 3": {
+      "main": [
+        [
+          {
+            "node": "RESPOSTA BOTÃO 3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ENVIO DOS BOTÕES": {
+      "main": [
+        [
+          {
+            "node": "ARMAZENA ID BOTÃO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VARIÁVEIS": {
+      "main": [
+        [
+          {
+            "node": "GATILHO + ESCOLHA DO BOTÃO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        []
+      ]
+    },
+    "GATILHO + ESCOLHA DO BOTÃO": {
+      "main": [
+        [
+          {
+            "node": "ENVIO DOS BOTÕES",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "RECUPERA ID BOTÃO 1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "RECUPERA ID BOTÃO 2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "RECUPERA ID BOTÃO 3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-31T16:08:05.803Z",
+  "id": "TLew5JP2TJG71OCd",
+  "isArchived": true,
+  "meta": null,
+  "name": "Envio de Botões - EvolutionAPI 2.2 - www.youtube.com/watch?v=2r9fQF82n5o",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "id_botao",
+        "value": "={{ $json.keyID }}"
+      },
+      "id": "f519cceb-ee93-48ae-a010-faa054299209",
+      "name": "RECUPERA ID BOTÃO 1",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        480,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "id_botao",
+        "value": "={{ $json.keyID }}"
+      },
+      "id": "386fed98-9b8a-41d8-86ed-59d1126a0194",
+      "name": "RECUPERA ID BOTÃO 2",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        480,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "id_botao",
+        "value": "={{ $json.keyID }}"
+      },
+      "id": "6fec9fb8-d02b-44de-8228-d6559eb1b74b",
+      "name": "RECUPERA ID BOTÃO 3",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        480,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "id_botao",
+        "value": "{{ $json.body.data.key.id }}"
+      },
+      "id": "ca874ecd-3350-4d88-8fd1-dbc63f5ccd62",
+      "name": "ARMAZENA ID BOTÃO",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        720,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.baseUrl.replace(/\\/$/, '') }}/message/sendButtons/{{ $json.instance }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $json.apikey }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "={{ $json.remoteJid }}"
+            },
+            {
+              "name": "title",
+              "value": "🚨 BLACK FRIDAY CHEGOU! 🚨"
+            },
+            {
+              "name": "description",
+              "value": "🔥 Aproveite ganhe até R$ 120 de DESCONTO usando o cupom BLACK 🔥"
+            },
+            {
+              "name": "footer",
+              "value": "⏰ Oferta limitada, não fique de fora!"
+            },
+            {
+              "name": "buttons",
+              "value": "={{ \n[\n{\n\"type\": \"reply\",\n\"displayText\": \"Botão A\",\n\"id\": \"1\"\n},\n{\n\"type\": \"reply\",\n\"displayText\": \"Botão B\",\n\"id\": \"2\"\n},\n{\n\"type\": \"reply\",\n\"displayText\": \"Botão C\",\n\"id\": \"3\"\n}\n] \n}}"
+            },
+            {
+              "name": "thumbnailUrl",
+              "value": "={{ $json.tumbnail }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b05e4ce5-3d49-4c79-b5d7-fc483f1dc951",
+      "name": "ENVIO DOS BOTÕES",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        480,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fb8c146c-9dff-4731-9f3e-eb1f79d2280d",
+              "name": "baseUrl",
+              "value": "={{ $json.body.server_url }}",
+              "type": "string"
+            },
+            {
+              "id": "cfc6844d-86a3-438d-a607-84f42114bba9",
+              "name": "apikey",
+              "value": "={{ $json.body.apikey }}",
+              "type": "string"
+            },
+            {
+              "id": "ff31f2bb-ba58-42cf-9fb4-366040da2b79",
+              "name": "remoteJid",
+              "value": "={{ $json.body.data.key.remoteJid }}",
+              "type": "string"
+            },
+            {
+              "id": "84153324-bc47-4f51-8eed-23521d9638ef",
+              "name": "keyID",
+              "value": "={{ $json.body.data.key.id }}",
+              "type": "string"
+            },
+            {
+              "id": "9ae8d2a5-d8e3-47f2-b292-4124629d25d1",
+              "name": "instance",
+              "value": "={{ $json.body.instance }}",
+              "type": "string"
+            },
+            {
+              "id": "a04dba9f-c215-4ac6-a3ce-76ebea012da5",
+              "name": "pushName",
+              "value": "={{ $json.body.data.pushName }}",
+              "type": "string"
+            },
+            {
+              "id": "1f2c870d-9532-4f01-8e8f-ff39da52682d",
+              "name": "tumbnail",
+              "value": "https://i.postimg.cc/DyqWTyM5/ads-2-1.png",
+              "type": "string"
+            },
+            {
+              "id": "ba2b5e6c-84c1-4909-8916-3024569624c5",
+              "name": "selectedId ",
+              "value": "={{ $json.body.data.message.templateButtonReplyMessage.selectedId }}",
+              "type": "string"
+            },
+            {
+              "id": "dfa4fbb0-3933-4cef-8ef8-c76e69a64924",
+              "name": "messageConversation",
+              "value": "={{ $json.body.data.message.conversation }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d84b8a50-dc02-4332-9e48-f1d17aca6d8e",
+      "name": "VARIÁVEIS",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        224,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Webhook').item.json.body.server_url }}/message/sendText/{{ $('Webhook').item.json.body.instance }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $('Webhook').item.json.body.apikey }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "={{ $('Webhook').item.json.body.data.key.remoteJid }}"
+            },
+            {
+              "name": "text",
+              "value": "Você escolheu o botão A"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e6a7126e-1666-4fbd-9722-6da1bbeab79a",
+      "name": "RESPOSTA BOTÃO 1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        720,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Webhook').item.json.body.server_url }}/message/sendText/{{ $('Webhook').item.json.body.instance }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $('Webhook').item.json.body.apikey }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "={{ $('Webhook').item.json.body.data.key.remoteJid }}"
+            },
+            {
+              "name": "text",
+              "value": "Você escolheu o botão B"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8ae996ce-bdda-4e64-956d-4b054b5e1970",
+      "name": "RESPOSTA BOTÃO 2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        720,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Webhook').item.json.body.server_url }}/message/sendText/{{ $('Webhook').item.json.body.instance }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $('Webhook').item.json.body.apikey }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "={{ $('Webhook').item.json.body.data.key.remoteJid }}"
+            },
+            {
+              "name": "text",
+              "value": "Você escolheu o botão C"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2208aece-1f26-4ce7-8811-bfc93a7b2a7e",
+      "name": "RESPOSTA BOTÃO 3",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        720,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "EvolutionAPI",
+        "options": {}
+      },
+      "id": "fb543f5b-c42b-43e8-aa49-2d81a686dda6",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "91914235-3268-41a4-be48-4a1480b49ee6"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.messageConversation }}",
+                    "rightValue": "bot",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "3698d1b8-c02a-458d-9884-bfbf495b99f3",
+                    "leftValue": "={{ $json['selectedId '] }}",
+                    "rightValue": "1",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "41863bef-4f9d-4ca5-ac60-0d7d9e56d787",
+                    "leftValue": "={{ $json['selectedId '] }}",
+                    "rightValue": "2",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "ea550f16-63b4-49c2-b34b-6081ed1172ea",
+                    "leftValue": "={{ $json['selectedId '] }}",
+                    "rightValue": "3",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5652fca7-f4eb-4e6f-a6ed-d05acdbb1e93",
+      "name": "GATILHO + ESCOLHA DO BOTÃO",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        224,
+        240
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-10-31T16:08:05.803Z",
+      "createdAt": "2025-10-31T16:08:05.803Z",
+      "role": "workflow:owner",
+      "workflowId": "TLew5JP2TJG71OCd",
+      "projectId": "Zl3u1vsJTIYoa3dk"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-10-31T16:07:57.921Z",
+      "createdAt": "2025-10-31T16:07:57.921Z",
+      "id": "Zc0x9BGR4OapHTf7",
+      "name": "Pack Typebot"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-31T23:30:30.980Z",
+  "versionId": "fae0ba19-2ffe-425a-9eed-4a5c58c26566"
+}
