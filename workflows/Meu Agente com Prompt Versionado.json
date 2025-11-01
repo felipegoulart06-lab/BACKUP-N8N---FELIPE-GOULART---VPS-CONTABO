@@ -1,162 +1,66 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
-    "n8n": {
+    "When chat message received": {
       "main": [
         [
           {
-            "node": "OneAtATime",
+            "node": "Get a file",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "new": {
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
       "main": [
         [
           {
-            "node": "GitHub Create",
+            "node": "Remover instruções do Copilot",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "same": {
+    "Get a file": {
       "main": [
         [
           {
-            "node": "OneAtATime",
+            "node": "Extract from File",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Merge": {
+    "Remover instruções do Copilot": {
       "main": [
         [
           {
-            "node": "isDiffOrNew",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "GitHub": {
-      "main": [
-        [
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Globals": {
-      "main": [
-        [
-          {
-            "node": "n8n",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "different": {
-      "main": [
-        [
-          {
-            "node": "GitHub Edit",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OneAtATime": {
-      "main": [
-        [
-          {
-            "node": "GitHub",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 1
-          }
-        ]
-      ]
-    },
-    "GitHub Edit": {
-      "main": [
-        [
-          {
-            "node": "OneAtATime",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "isDiffOrNew": {
-      "main": [
-        [
-          {
-            "node": "github_status",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "GitHub Create": {
-      "main": [
-        [
-          {
-            "node": "OneAtATime",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "github_status": {
-      "main": [
-        [
-          {
-            "node": "same",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "different",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "new",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Schedule Trigger": {
-      "main": [
-        [
-          {
-            "node": "Globals",
+            "node": "AI Agent",
             "type": "main",
             "index": 0
           }
@@ -164,334 +68,151 @@
       ]
     }
   },
-  "createdAt": "2025-10-31T01:18:24.819Z",
-  "id": "UOkB9qJskQs5kzKE",
-  "isArchived": false,
-  "meta": {
-    "templateCredsSetupCompleted": true
-  },
+  "createdAt": "2025-10-29T22:44:31.760Z",
+  "id": "GXeeOG6MdoKPe9WZ",
+  "isArchived": true,
+  "meta": null,
   "name": "Meu Agente com Prompt Versionado",
   "nodes": [
     {
       "parameters": {
-        "authentication": "oAuth2",
-        "resource": "file",
-        "operation": "get",
-        "owner": "={{$node[\"Globals\"].json[\"repo\"][\"owner\"]}}",
-        "repository": "={{$node[\"Globals\"].json[\"repo\"][\"name\"]}}",
-        "filePath": "={{$node[\"Globals\"].json[\"repo\"][\"path\"]}}{{$json[\"name\"]}}.json",
-        "asBinaryProperty": false,
-        "additionalParameters": {}
-      },
-      "id": "bffdf530-86f3-4843-99c2-5bd129973640",
-      "name": "GitHub",
-      "type": "n8n-nodes-base.github",
-      "position": [
-        -800,
-        272
-      ],
-      "typeVersion": 1,
-      "alwaysOutputData": true,
-      "webhookId": "ef223561-9efa-420b-8b58-ec382853885a",
-      "credentials": {
-        "githubOAuth2Api": {
-          "id": "ecrqYyxrrGsK7HS8",
-          "name": "GitHub account"
-        }
-      },
-      "continueOnFail": true
-    },
-    {
-      "parameters": {
-        "dataType": "string",
-        "value1": "={{$json[\"github_status\"]}}",
-        "rules": {
-          "rules": [
-            {
-              "value2": "same"
-            },
-            {
-              "value2": "different",
-              "output": 1
-            },
-            {
-              "value2": "new",
-              "output": 2
-            }
-          ]
-        }
-      },
-      "id": "4770560b-0d1e-4f8a-a5d1-bc3a8b0901e4",
-      "name": "github_status",
-      "type": "n8n-nodes-base.switch",
-      "position": [
-        -16,
-        400
-      ],
-      "typeVersion": 1
-    },
-    {
-      "parameters": {},
-      "id": "8a99686f-cfc1-4b45-a0a9-72a160d580c8",
-      "name": "same",
-      "type": "n8n-nodes-base.noOp",
-      "position": [
-        224,
-        208
-      ],
-      "typeVersion": 1
-    },
-    {
-      "parameters": {},
-      "id": "2e769320-dcfe-4fde-b088-7ad23ee4788d",
-      "name": "different",
-      "type": "n8n-nodes-base.noOp",
-      "position": [
-        224,
-        400
-      ],
-      "typeVersion": 1
-    },
-    {
-      "parameters": {},
-      "id": "8fb97e09-1e4c-4969-83df-fd214b3d7228",
-      "name": "new",
-      "type": "n8n-nodes-base.noOp",
-      "position": [
-        240,
-        576
-      ],
-      "typeVersion": 1
-    },
-    {
-      "parameters": {
-        "authentication": "oAuth2",
-        "resource": "file",
-        "operation": "edit",
-        "owner": "={{$node[\"Globals\"].json[\"repo\"][\"owner\"]}}",
-        "repository": "={{$node[\"Globals\"].json[\"repo\"][\"name\"]}}",
-        "filePath": "={{$node[\"Globals\"].json[\"repo\"][\"path\"]}}{{$node[\"OneAtATime\"].json[\"name\"]}}.json",
-        "fileContent": "={{$node[\"isDiffOrNew\"].json[\"n8n_data_stringy\"]}}",
-        "commitMessage": "=[N8N Backup] {{$node[\"OneAtATime\"].json[\"name\"]}}.json ({{$json[\"github_status\"]}})"
-      },
-      "id": "e2a46340-7f4b-429c-aced-fdebcfa88b93",
-      "name": "GitHub Edit",
-      "type": "n8n-nodes-base.github",
-      "position": [
-        416,
-        400
-      ],
-      "typeVersion": 1,
-      "webhookId": "bea2b648-5990-4860-8bd8-3b60403e3e35",
-      "credentials": {
-        "githubOAuth2Api": {
-          "id": "ecrqYyxrrGsK7HS8",
-          "name": "GitHub account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "authentication": "oAuth2",
-        "resource": "file",
-        "owner": "={{$node[\"Globals\"].json[\"repo\"][\"owner\"]}}",
-        "repository": "={{$node[\"Globals\"].json[\"repo\"][\"name\"]}}",
-        "filePath": "={{$node[\"Globals\"].json[\"repo\"][\"path\"]}}{{$node[\"OneAtATime\"].json[\"name\"]}}.json",
-        "fileContent": "={{$node[\"isDiffOrNew\"].json[\"n8n_data_stringy\"]}}",
-        "commitMessage": "=[N8N Backup] {{$node[\"OneAtATime\"].json[\"name\"]}}.json ({{$json[\"github_status\"]}})"
-      },
-      "id": "03972227-6c78-4397-ab13-770b5c8d2c73",
-      "name": "GitHub Create",
-      "type": "n8n-nodes-base.github",
-      "position": [
-        416,
-        592
-      ],
-      "typeVersion": 1,
-      "webhookId": "aa221367-efe0-46c5-b9f4-8dcc7b24b671",
-      "credentials": {
-        "githubOAuth2Api": {
-          "id": "ecrqYyxrrGsK7HS8",
-          "name": "GitHub account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "batchSize": 1,
         "options": {}
       },
-      "id": "eeebccc3-cf39-40d0-90d9-cafce79b647b",
-      "name": "OneAtATime",
-      "type": "n8n-nodes-base.splitInBatches",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
       "position": [
-        -1024,
-        432
+        384,
+        -80
       ],
-      "typeVersion": 1
+      "id": "251fbf09-1be4-423c-b631-e9010232aace",
+      "name": "When chat message received",
+      "webhookId": "b2c1d7cf-daa6-4f41-b86a-635365fa53c8"
     },
     {
       "parameters": {
-        "values": {
-          "string": [
+        "promptType": "define",
+        "text": "={{ $('When chat message received').item.json.chatInput }}",
+        "options": {
+          "systemMessage": "={{ $json.data }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        1216,
+        -80
+      ],
+      "id": "cde33e23-1ef1-48ce-b5aa-a285e390e67f",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1152,
+        128
+      ],
+      "id": "2d71f423-f436-4dd5-b8c2-ddd90262a39a",
+      "name": "Google Gemini Chat Model"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('When chat message received').item.json.sessionId }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        1312,
+        128
+      ],
+      "id": "2bb43c8b-9d92-4a07-a08f-c333d07114f2",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        800,
+        -80
+      ],
+      "id": "21d978e3-9845-4938-8c09-06aac77087ec",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "get",
+        "owner": {
+          "__rl": true,
+          "value": "=<INSIRA O SEU NOME DE USUÁRIO GITHUB>",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "meus-prompts",
+          "mode": "name"
+        },
+        "filePath": "<INSIRA O NOME DO SEU PROMPT>.md",
+        "additionalParameters": {}
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1.1,
+      "position": [
+        592,
+        -80
+      ],
+      "id": "55ca6277-aeaf-43b7-a2fb-b65c7b03109c",
+      "name": "Get a file",
+      "webhookId": "5a5c6abe-2d4e-4a2e-9e75-25e2146bf335"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
             {
-              "name": "repo.owner",
-              "value": "felipegoulart06-lab"
-            },
-            {
-              "name": "repo.name",
-              "value": "BACKUP-N8N---FELIPE-GOULART---VPS-CONTABO"
-            },
-            {
-              "name": "repo.path",
-              "value": "workflows/"
+              "id": "db99733c-5aec-4145-acdf-a44ea90bfbb9",
+              "name": "data",
+              "value": "={{ $json.data.split('\\n====\\n').slice(1).join('\\n====\\n').trim() }}",
+              "type": "string"
             }
           ]
         },
         "options": {}
       },
-      "id": "25f7ba42-13b5-48af-b60e-3a174ea5b92e",
-      "name": "Globals",
       "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
       "position": [
-        -1456,
-        432
+        1008,
+        -80
       ],
-      "typeVersion": 1
-    },
-    {
-      "parameters": {
-        "content": "## Backups de Fluxos de Trabalho\nEste fluxo de trabalho fará backup automático dos seus fluxos de trabalho na sua conta do GitHub a cada 24 horas.\n\n### Configuração\nAbra as Configurações Globais e atualize os valores abaixo:\n**repo.owner:** Este é o seu nome de usuário do GitHub\n**repo.name:** Este é o nome do seu repositório\n**repo.path:** Esta é a pasta a ser usada dentro do repositório. Se ela não existir, será criada.\n\nSe o seu nome de usuário fosse `n8n-io` e o seu repositório se chamasse `n8n-backups` e você quisesse que os fluxos de trabalho fossem para uma pasta `workflows`, você configuraria:\n\nrepo.owner - n8n-io\nrepo.name - n8n-backups\nrepo.path - workflows",
-        "height": 464.79920462713443,
-        "width": 389.78906250000017
-      },
-      "id": "97bb09af-3b91-44c5-ab22-5a3e545811d2",
-      "name": "Note",
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        -2096,
-        224
-      ],
-      "typeVersion": 1
-    },
-    {
-      "parameters": {
-        "content": "## Loop de Item Único\nProcessamos cada item do fluxo de trabalho individualmente. Primeiro, verificamos o Github para ver se um arquivo existe. Em seguida, mesclamos os dados do Github com o item da API para que possamos verificar se os valores correspondem no nó de função `isDiffOrNew`. Depois, definimos um status como `same`, `different` ou `new`.",
-        "height": 564,
-        "width": 955
-      },
-      "id": "9f69bbb3-1e50-4385-b707-0e7994d5771c",
-      "name": "Note2",
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        -1120,
-        144
-      ],
-      "typeVersion": 1
-    },
-    {
-      "parameters": {
-        "content": "## Salvar os dados\nUsando o nó de alternância, determinamos o que fazer com base no status anterior. Se for o mesmo, não fazemos nada. Se for diferente, atualizamos o arquivo no Github e, se for novo, criamos um novo arquivo. Depois disso, voltamos ao nó de divisão em lotes (OneAtAtTime) para iniciar o processo novamente.",
-        "height": 954,
-        "width": 766,
-        "color": 4
-      },
-      "id": "169b03df-847f-4441-9f33-efb9fc4909cc",
-      "name": "Note3",
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        -80,
-        -16
-      ],
-      "typeVersion": 1
-    },
-    {
-      "parameters": {
-        "filters": {},
-        "requestOptions": {}
-      },
-      "id": "25c006c2-b76a-430b-845b-d948b2d1ae38",
-      "name": "n8n",
-      "type": "n8n-nodes-base.n8n",
-      "position": [
-        -1264,
-        432
-      ],
-      "typeVersion": 1,
-      "credentials": {
-        "n8nApi": {
-          "id": "s6YfbumrB3HlFq82",
-          "name": "n8n account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "jsCode": "// File Returned with Content\nif (Object.keys($input.all()[0].json).includes(\"content\")) {\n  // Get JSON Objects\n  var origWorkflow = JSON.parse(Buffer.from($input.all()[0].json.content, 'base64'));\n  var n8nWorkflow = $input.all()[1].json;\n  \n  // Order JSON Objects\n  var orderedOriginal = {}\n  var orderedActual = {}\n  \n  Object.keys(origWorkflow).sort().forEach(function(key) {\n    orderedOriginal[key] = origWorkflow[key];\n  });\n  \n  Object.keys(n8nWorkflow).sort().forEach(function(key) {\n    orderedActual[key] = n8nWorkflow[key];\n  });\n\n  // Determine Difference\n  if ( JSON.stringify(orderedOriginal) === JSON.stringify(orderedActual) ) {\n    $input.all()[0].json.github_status = \"same\";\n    $input.all()[0].json.content_decoded = orderedOriginal;\n  } else {\n    $input.all()[0].json.github_status = \"different\";\n    $input.all()[0].json.content_decoded = orderedOriginal;\n    $input.all()[0].json.n8n_data_stringy = JSON.stringify(orderedActual, null, 2);\n  }\n// No File Returned / New Workflow\n} else {\n  // Order JSON Object\n  var n8nWorkflow = ($input.all()[1].json);\n  var orderedActual = {}\n  Object.keys(n8nWorkflow).sort().forEach(function(key) {\n    orderedActual[key] = n8nWorkflow[key];\n  });\n  \n  // Proper Formatting\n  $input.all()[0].json.github_status = \"new\";\n  $input.all()[0].json.n8n_data_stringy = JSON.stringify(orderedActual, null, 2);\n}\n\n// Return Items\nreturn $input.all();"
-      },
-      "id": "228bc632-aefb-4f76-92ef-8bc45ae31784",
-      "name": "isDiffOrNew",
-      "type": "n8n-nodes-base.code",
-      "position": [
-        -400,
-        400
-      ],
-      "typeVersion": 1
-    },
-    {
-      "parameters": {},
-      "id": "3a33500a-7eed-4b71-ab94-257a85b5f47f",
-      "name": "Merge",
-      "type": "n8n-nodes-base.merge",
-      "position": [
-        -576,
-        400
-      ],
-      "typeVersion": 2
-    },
-    {
-      "parameters": {
-        "rule": {
-          "interval": [
-            {
-              "field": "hours",
-              "hoursInterval": 24
-            }
-          ]
-        }
-      },
-      "id": "b3a0fe36-8433-4dcf-a43a-56dbb43bef2d",
-      "name": "Schedule Trigger",
-      "type": "n8n-nodes-base.scheduleTrigger",
-      "typeVersion": 1.2,
-      "position": [
-        -1648,
-        432
-      ]
+      "id": "bfb346ca-8914-4589-9e2c-d8e6c48c04c8",
+      "name": "Remover instruções do Copilot"
     }
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1",
-    "callerPolicy": "workflowsFromSameOwner",
-    "availableInMCP": false
+    "executionOrder": "v1"
   },
   "shared": [
     {
-      "updatedAt": "2025-10-31T01:18:24.819Z",
-      "createdAt": "2025-10-31T01:18:24.819Z",
+      "updatedAt": "2025-10-29T22:44:31.760Z",
+      "createdAt": "2025-10-29T22:44:31.760Z",
       "role": "workflow:owner",
-      "workflowId": "UOkB9qJskQs5kzKE",
+      "workflowId": "GXeeOG6MdoKPe9WZ",
       "projectId": "Zl3u1vsJTIYoa3dk"
     }
   ],
-  "staticData": {
-    "node:Schedule Trigger": {
-      "recurrenceRules": []
-    }
-  },
+  "staticData": null,
   "tags": [],
-  "triggerCount": 1,
-  "updatedAt": "2025-10-31T11:13:45.640Z",
-  "versionId": "dbe6a017-32f9-4d49-bc70-c32ce4abcca9"
+  "triggerCount": 0,
+  "updatedAt": "2025-10-29T22:45:08.530Z",
+  "versionId": "9cb9753c-6ec1-4975-85a6-23d1a5d6cedf"
 }
