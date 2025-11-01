@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Webhook - Receber Mensagem": {
       "main": [
@@ -286,7 +286,7 @@
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        1104,
+        960,
         64
       ],
       "id": "c0777438-398f-428a-bfd9-5fbae3749465",
@@ -351,6 +351,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-10-30T21:31:43.488Z",
-  "versionId": "574a28d2-a2e1-41ef-a8ba-140e110eedb6"
+  "updatedAt": "2025-10-31T11:17:06.372Z",
+  "versionId": "6949e8bd-ddfe-4a3a-9b88-0d7f4f535949"
 }
