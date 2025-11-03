@@ -1,46 +1,6 @@
 {
   "active": false,
   "connections": {
-    "Webhook - Receber Mensagem": {
-      "main": [
-        [
-          {
-            "node": "Set - Dados",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Set - Dados": {
-      "main": [
-        [
-          {
-            "node": "If - Enviar para IA",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If - Enviar para IA": {
-      "main": [
-        [
-          {
-            "node": "Filter",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "AI Agent",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "OpenAI Chat Model": {
       "ai_languageModel": [
         [
@@ -65,6 +25,27 @@
     },
     "Postgres Chat Memory": {
       "ai_memory": [
+        []
+      ]
+    },
+    "code tool": {
+      "ai_tool": [
+        []
+      ]
+    },
+    "Consultoria Estratégica": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
         [
           {
             "node": "AI Agent",
@@ -74,177 +55,259 @@
         ]
       ]
     },
-    "code tool": {
-      "ai_tool": [
+    "Edit Fields": {
+      "main": [
         [
           {
             "node": "AI Agent",
-            "type": "ai_tool",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent2": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory2": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent3": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory3": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent4": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent4",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory4": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent4",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields4": {
+      "main": [
+        [
+          {
+            "node": "AI Agent4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Desenvolvimento de Sites e Plataformas": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Automação e Integrações Inteligentes (n8n, APIs)": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pacote de Marketing e Criação de Conteúdo": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pacote Start – Transforme sua Empresa Digitalmente": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields4",
+            "type": "main",
             "index": 0
           }
         ]
       ]
     }
   },
-  "createdAt": "2025-10-29T23:38:33.155Z",
-  "id": "7viq8lVXhjCK3zD0",
+  "createdAt": "2025-11-02T00:08:53.247Z",
+  "id": "cwnZKzlA6krifxjY",
   "isArchived": false,
-  "meta": {
-    "templateCredsSetupCompleted": true
-  },
+  "meta": null,
   "name": "Atendimento WhatsApp IA – ActiveBackground",
   "nodes": [
     {
       "parameters": {
-        "httpMethod": "POST",
-        "path": "chatwoot-whatsapp",
-        "options": {}
-      },
-      "id": "ae9112fd-56d8-4af3-b314-24fb05e1625e",
-      "name": "Webhook - Receber Mensagem",
-      "type": "n8n-nodes-base.webhook",
-      "position": [
-        -144,
-        0
-      ],
-      "typeVersion": 2.1,
-      "webhookId": "577bd90d-dac4-494d-96dd-16e0fa3e8802"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "6502303a-7120-4d64-ae9a-9ea7ea6b60a2",
-              "name": "body.conversation.meta.sender.phone_number",
-              "value": "={{ $json.body.conversation.meta.sender.phone_number }}",
-              "type": "string"
-            },
-            {
-              "id": "bbffe22b-b2ea-4cc6-a733-bd29a4c642c7",
-              "name": "body.conversation.meta.sender.identifier",
-              "value": "={{ $json.body.conversation.meta.sender.identifier }}",
-              "type": "string"
-            },
-            {
-              "id": "983ecce1-7782-4226-b2ab-5d1a3db85105",
-              "name": "body.message_type",
-              "value": "={{ $json.body.message_type }}",
-              "type": "string"
-            },
-            {
-              "id": "1116e14f-0f41-4be9-b4ec-cd3b767be19e",
-              "name": "body.content",
-              "value": "={{ $json.body.content }}",
-              "type": "string"
-            },
-            {
-              "id": "f4446653-5665-427d-9f49-4e9247f7e4dd",
-              "name": "body.inbox",
-              "value": "={{ $json.body.inbox }}",
-              "type": "object"
-            },
-            {
-              "id": "d4e5ec7a-af13-46fc-a8a6-e47748ddf572",
-              "name": "body.conversation.messages[0].sender.available_name",
-              "value": "={{ $json.body.conversation.messages[0].sender.available_name }}",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "bcd3d516-4638-4609-9b42-de2e2de565cf",
-      "name": "Set - Dados",
-      "type": "n8n-nodes-base.set",
-      "position": [
-        96,
-        0
-      ],
-      "typeVersion": 3.4
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "ae806359-8bc7-45d5-b574-ebfd7d818130",
-              "leftValue": "={{ $json.body.message_type }}",
-              "rightValue": "=outgoing",
-              "operator": {
-                "type": "string",
-                "operation": "equals"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "c64289a2-25fc-43c0-ad8f-ffd25ec5f384",
-      "name": "If - Enviar para IA",
-      "type": "n8n-nodes-base.if",
-      "position": [
-        336,
-        0
-      ],
-      "typeVersion": 2.2
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "11ce7d1c-78ce-451f-b0ed-51ad164a28e2",
-              "leftValue": "={{ $('Webhook - Receber Mensagem').item.json.body.source_id }}",
-              "rightValue": "",
-              "operator": {
-                "type": "string",
-                "operation": "empty",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.filter",
-      "typeVersion": 2.2,
-      "position": [
-        528,
-        -128
-      ],
-      "id": "651e85a1-a461-4fd4-a2b5-515390788837",
-      "name": "Filter"
-    },
-    {
-      "parameters": {
         "promptType": "define",
-        "text": "={{ $json.body.content }}",
+        "text": "={{JSON.stringify($json)}}",
         "options": {
-          "systemMessage": "Você é Felipe Goulart, especialista em desenvolvimento de websites (Front-end e Back-end), automações e criação de imagens, e atua na Active Background.\n\n**Seu Estilo e Personalidade:**\n1. Fale de forma natural, inteligente, experiente e leve.\n2. Use linguagem próxima, com personalidade (pode usar gírias ou expressões de bate-papo).\n3. Vá direto ao ponto. Explique o necessário, sem enrolação.\n4. Seja confiante, tranquilo e mostre interesse prático no problema do usuário.\n5. JAMais diga que é uma IA ou um robô. Você é o Felipe, um parceiro de trabalho.\n\n**Seu Foco Principal:**\nAjudar com criação/desenvolvimento de sites, automações (n8n, bots, integrações) e design/criação de imagens.\n\n---\n\n**INSTRUÇÃO CRUCIAL PARA FERRAMENTAS (TOOLS):**\n\n1. **InfoServicos:**\n   Quando o usuário pedir informações sobre os serviços da Active Background — como *sites, automações, imagens ou sistemas* — **VOCÊ DEVE** utilizar a ferramenta `InfoServicos`.\n   Ela retorna descrições detalhadas sobre o serviço solicitado (ex: \"sites\").\n   **Sempre chame essa ferramenta antes de responder** quando o usuário quiser saber *o que você faz*, *sobre seus serviços* ou *como pode ajudar*.\n\nATENÇÃO: SEMPRE QUE ENVIAR MENSAGEM, ENVIA NO COMEÇO DA MENSAGEM:\n*ActiveBackground - Felipe*"
+          "systemMessage": "Você é o assistente virtual da empresa **Active Background**, especializada em consultoria estratégica, desenvolvimento de sites, automações e soluções digitais inteligentes.\n\nSeu papel é interpretar automaticamente os dados recebidos de um formulário de agendamento online, enviados via webhook, no formato JSON, que será fornecido no Prompt (User Message) - **NUNCA repita ou transcreva o JSON de entrada na saída**.\n\nOs dados incluem informações do cliente (name, company, email, phone, projectDetails), o serviço selecionado (serviceId/serviceName) e as respostas detalhadas a um questionário (questionnaire.answers).\n\nSua função é:\n1. **Interpretar o contexto** da solicitação de acordo com todas as respostas recebidas.\n2. **Gerar uma análise resumida e personalizada**, em tom humano, consultivo e empático, mostrando que você compreendeu a situação da empresa.\n3. **Sugerir próximos passos** relevantes e específicos para o cliente, como uma reunião de diagnóstico, proposta de automação, criação de site, ou consultoria estratégica.\n4. **Evitar linguagem genérica e frases de efeito vazias.** Cada mensagem deve parecer escrita sob medida para aquele cliente específico.\n5. **Jamais repetir os rótulos técnicos do JSON (ex: 'objetivo-principal').** Sempre transformar os dados em linguagem natural.\n6. **Prioridades de Resposta:**\n    * Se o serviço for “Consultoria Estratégica”, priorize identificar o momento do negócio e orientar um plano de ação inicial.\n    * **Se houver 'problema-urgente' (como \"TENHO UM PROBLEMA, MEU SITE ESTÁ FORA DO AR\") traga-o como a prioridade MÁXIMA na resposta e ofereça ação imediata.**\n    * Se o orçamento for “Baixo”, foque em soluções modulares e acessíveis; se “Alto”, destaque abordagens completas e estratégicas.\n    * Se “orcamento” for “Ainda não sei”, ofereça uma análise inicial gratuita ou reunião exploratória.\n7. Termine sempre de forma profissional e acolhedora, reforçando o nome “Active Background” e deixando o cliente confiante.\n\n**Formato esperado de saída (texto corrido, sem formatação Markdown, HTML ou JSON):**\n- Saudação personalizada pelo nome.\n- Diagnóstico rápido (1–2 parágrafos).\n- Sugestão de solução ou próximos passos (1 parágrafo).\n- Encerramento cordial, ex: “Em breve entraremos em contato para alinhar o próximo passo.”\n\nExemplo de saída:\n> Olá, João! 👋\n> Entendi que seu principal objetivo é melhorar a presença online e que você já possui alguns canais ativos, como Instagram e loja virtual. Seu desafio atual parece estar ligado à falta de automação e estrutura nos processos internos.\n> Podemos iniciar com uma consultoria estratégica voltada à organização digital e criação de automações personalizadas."
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3,
       "position": [
-        560,
-        64
+        208,
+        -368
       ],
-      "id": "83bea48c-c466-4513-b8ca-7bf5e679b08f",
+      "id": "9fb33abe-887a-4728-885a-f0413bfe5af5",
       "name": "AI Agent",
       "notesInFlow": false,
       "executeOnce": false,
@@ -263,10 +326,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        512,
-        256
+        144,
+        -160
       ],
-      "id": "287babbe-0474-42b1-a0f1-6df17abd6386",
+      "id": "d7126725-2594-4309-94b8-c2913ea45108",
       "name": "OpenAI Chat Model",
       "credentials": {
         "openAiApi": {
@@ -279,17 +342,17 @@
       "parameters": {
         "resource": "messages-api",
         "instanceName": "INSTANCIA ACTIVEBACKGROUND",
-        "remoteJid": "={{ $('If - Enviar para IA').item.json.body.conversation.meta.sender.phone_number }}",
+        "remoteJid": "=+55{{ $('Consultoria Estratégica').item.json.body.phone }}",
         "messageText": "={{ $json.output }}",
         "options_message": {}
       },
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        960,
-        64
+        528,
+        -368
       ],
-      "id": "c0777438-398f-428a-bfd9-5fbae3749465",
+      "id": "0c62d779-278c-4ed0-9882-250cd1b4c0a5",
       "name": "Enviar texto",
       "credentials": {
         "evolutionApi": {
@@ -301,16 +364,16 @@
     {
       "parameters": {
         "sessionIdType": "customKey",
-        "sessionKey": "={{ $('If - Enviar para IA').item.json.body.conversation.meta.sender.phone_number }}",
+        "sessionKey": "=",
         "contextWindowLength": 10
       },
       "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
       "typeVersion": 1.3,
       "position": [
-        624,
-        320
+        816,
+        -448
       ],
-      "id": "6b3b8823-2244-4226-bbb7-9c94df2c8236",
+      "id": "5304bee3-b700-48f8-b437-21b2de43d405",
       "name": "Postgres Chat Memory",
       "credentials": {
         "postgres": {
@@ -327,12 +390,609 @@
       "type": "@n8n/n8n-nodes-langchain.toolCode",
       "typeVersion": 1.3,
       "position": [
-        768,
-        320
+        1008,
+        -320
       ],
-      "id": "15e605e3-0c9d-40a1-9c0e-073d76a9a37d",
+      "id": "36afd099-58d0-4e58-8135-72d51a4d39d0",
       "name": "code tool",
       "notesInFlow": false
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "a39b21d1-51ed-4cbf-96e9-1ba80ed374c2",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -288,
+        -352
+      ],
+      "id": "2f262b8d-0d8d-418a-ae16-8a8972261a04",
+      "name": "Consultoria Estratégica",
+      "webhookId": "a39b21d1-51ed-4cbf-96e9-1ba80ed374c2"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "660c2603-ae7d-48ed-8cd2-7a634b3aa6f2",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        256,
+        128
+      ],
+      "id": "e36863c9-b827-492e-a706-2c56ce6dc985",
+      "name": "Desenvolvimento de Sites e Plataformas",
+      "webhookId": "660c2603-ae7d-48ed-8cd2-7a634b3aa6f2"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "384e2516-1a91-4652-a487-48bb8713594a",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -288,
+        528
+      ],
+      "id": "c3190115-5dc5-4181-9aab-0f15b3dee0a2",
+      "name": "Automação e Integrações Inteligentes (n8n, APIs)",
+      "webhookId": "384e2516-1a91-4652-a487-48bb8713594a"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "b0d8f974-86b9-48d9-8631-ee268cb6fb78",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -272,
+        1024
+      ],
+      "id": "cee545ae-c27a-4f03-a0a0-e17a4fe2e657",
+      "name": "Pacote de Marketing e Criação de Conteúdo",
+      "webhookId": "b0d8f974-86b9-48d9-8631-ee268cb6fb78"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "06b9a4c5-689d-4d92-87f1-bc389b01b812",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -32,
+        1600
+      ],
+      "id": "7138a111-c412-45e6-aee3-266c06570ac3",
+      "name": "Pacote Start – Transforme sua Empresa Digitalmente",
+      "webhookId": "06b9a4c5-689d-4d92-87f1-bc389b01b812"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Consultoria Estratégica').item.json.body.phone }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        288,
+        -160
+      ],
+      "id": "d8f12052-b825-4558-ba66-8e18a2d0eb9b",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c85b139f-991b-48e1-aee5-2975043def4d",
+              "name": "body",
+              "value": "={{ $json.body }}",
+              "type": "object"
+            },
+            {
+              "id": "83c2e9ff-87dc-4be4-a0a1-da3d850dd578",
+              "name": "body.questionnaire",
+              "value": "={{ $json.body.questionnaire }}",
+              "type": "object"
+            },
+            {
+              "id": "b0be5cd4-dfe1-4227-982a-abdac7c9e0e1",
+              "name": "body.submittedAt",
+              "value": "={{ $json.body.submittedAt }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -48,
+        -352
+      ],
+      "id": "0e4a11e9-f70e-4210-a3fc-813a495656c4",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{JSON.stringify($json)}}",
+        "options": {
+          "systemMessage": "Você é o assistente virtual da empresa **Active Background**, especializada em consultoria estratégica, desenvolvimento de sites, automações e soluções digitais inteligentes.\n\nSeu papel é interpretar automaticamente os dados recebidos de um formulário de agendamento online, enviados via webhook, no formato JSON, que será fornecido no Prompt (User Message) - **NUNCA repita ou transcreva o JSON de entrada na saída**.\n\nOs dados incluem informações do cliente (name, company, email, phone, projectDetails), o serviço selecionado (serviceId/serviceName) e as respostas detalhadas a um questionário (questionnaire.answers).\n\nSua função é:\n1. **Interpretar o contexto** da solicitação de acordo com todas as respostas recebidas.\n2. **Gerar uma análise resumida e personalizada**, em tom humano, consultivo e empático, mostrando que você compreendeu a situação da empresa.\n3. **Sugerir próximos passos** relevantes e específicos para o cliente, como uma reunião de diagnóstico, proposta de automação, criação de site, ou consultoria estratégica.\n4. **Evitar linguagem genérica e frases de efeito vazias.** Cada mensagem deve parecer escrita sob medida para aquele cliente específico.\n5. **Jamais repetir os rótulos técnicos do JSON (ex: 'objetivo-principal').** Sempre transformar os dados em linguagem natural.\n6. **Prioridades de Resposta:**\n    * Se o serviço for “Consultoria Estratégica”, priorize identificar o momento do negócio e orientar um plano de ação inicial.\n    * **Se houver 'problema-urgente' (como \"TENHO UM PROBLEMA, MEU SITE ESTÁ FORA DO AR\") traga-o como a prioridade MÁXIMA na resposta e ofereça ação imediata.**\n    * Se o orçamento for “Baixo”, foque em soluções modulares e acessíveis; se “Alto”, destaque abordagens completas e estratégicas.\n    * Se “orcamento” for “Ainda não sei”, ofereça uma análise inicial gratuita ou reunião exploratória.\n7. Termine sempre de forma profissional e acolhedora, reforçando o nome “Active Background” e deixando o cliente confiante.\n\n**Formato esperado de saída (texto corrido, sem formatação Markdown, HTML ou JSON):**\n- Saudação personalizada pelo nome.\n- Diagnóstico rápido (1–2 parágrafos).\n- Sugestão de solução ou próximos passos (1 parágrafo).\n- Encerramento cordial, ex: “Em breve entraremos em contato para alinhar o próximo passo.”\n\nExemplo de saída:\n> Olá, João! 👋\n> Entendi que seu principal objetivo é melhorar a presença online e que você já possui alguns canais ativos, como Instagram e loja virtual. Seu desafio atual parece estar ligado à falta de automação e estrutura nos processos internos.\n> Podemos iniciar com uma consultoria estratégica voltada à organização digital e criação de automações personalizadas."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        656,
+        80
+      ],
+      "id": "3f4365e9-94e1-41db-bd78-da18b86b20bc",
+      "name": "AI Agent1",
+      "notesInFlow": false,
+      "executeOnce": false,
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        608,
+        288
+      ],
+      "id": "0bba4dca-0748-4ed0-9590-afa2d20d62bb",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "aUqWG9Hu0gNKqn8b",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "INSTANCIA ACTIVEBACKGROUND",
+        "remoteJid": "=+55{{ $('Consultoria Estratégica').item.json.body.phone }}",
+        "messageText": "={{ $json.output }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        976,
+        80
+      ],
+      "id": "d4e1d721-8892-4e61-a1f6-886cf1b9d691",
+      "name": "Enviar texto1",
+      "credentials": {
+        "evolutionApi": {
+          "id": "OMumhTKAtpAeMqgF",
+          "name": "Evolution account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Consultoria Estratégica').item.json.body.phone }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        752,
+        336
+      ],
+      "id": "a0e0f0ed-1952-47e4-9465-b9d0356e5dea",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c85b139f-991b-48e1-aee5-2975043def4d",
+              "name": "body",
+              "value": "={{ $json.body }}",
+              "type": "object"
+            },
+            {
+              "id": "83c2e9ff-87dc-4be4-a0a1-da3d850dd578",
+              "name": "body.questionnaire",
+              "value": "={{ $json.body.questionnaire }}",
+              "type": "object"
+            },
+            {
+              "id": "b0be5cd4-dfe1-4227-982a-abdac7c9e0e1",
+              "name": "body.submittedAt",
+              "value": "={{ $json.body.submittedAt }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        464,
+        80
+      ],
+      "id": "c0f5235e-3c40-4db5-b390-39de443366f5",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{JSON.stringify($json)}}",
+        "options": {
+          "systemMessage": "Você é o assistente virtual da empresa **Active Background**, especializada em consultoria estratégica, desenvolvimento de sites, automações e soluções digitais inteligentes.\n\nSeu papel é interpretar automaticamente os dados recebidos de um formulário de agendamento online, enviados via webhook, no formato JSON, que será fornecido no Prompt (User Message) - **NUNCA repita ou transcreva o JSON de entrada na saída**.\n\nOs dados incluem informações do cliente (name, company, email, phone, projectDetails), o serviço selecionado (serviceId/serviceName) e as respostas detalhadas a um questionário (questionnaire.answers).\n\nSua função é:\n1. **Interpretar o contexto** da solicitação de acordo com todas as respostas recebidas.\n2. **Gerar uma análise resumida e personalizada**, em tom humano, consultivo e empático, mostrando que você compreendeu a situação da empresa.\n3. **Sugerir próximos passos** relevantes e específicos para o cliente, como uma reunião de diagnóstico, proposta de automação, criação de site, ou consultoria estratégica.\n4. **Evitar linguagem genérica e frases de efeito vazias.** Cada mensagem deve parecer escrita sob medida para aquele cliente específico.\n5. **Jamais repetir os rótulos técnicos do JSON (ex: 'objetivo-principal').** Sempre transformar os dados em linguagem natural.\n6. **Prioridades de Resposta:**\n    * Se o serviço for “Consultoria Estratégica”, priorize identificar o momento do negócio e orientar um plano de ação inicial.\n    * **Se houver 'problema-urgente' (como \"TENHO UM PROBLEMA, MEU SITE ESTÁ FORA DO AR\") traga-o como a prioridade MÁXIMA na resposta e ofereça ação imediata.**\n    * Se o orçamento for “Baixo”, foque em soluções modulares e acessíveis; se “Alto”, destaque abordagens completas e estratégicas.\n    * Se “orcamento” for “Ainda não sei”, ofereça uma análise inicial gratuita ou reunião exploratória.\n7. Termine sempre de forma profissional e acolhedora, reforçando o nome “Active Background” e deixando o cliente confiante.\n\n**Formato esperado de saída (texto corrido, sem formatação Markdown, HTML ou JSON):**\n- Saudação personalizada pelo nome.\n- Diagnóstico rápido (1–2 parágrafos).\n- Sugestão de solução ou próximos passos (1 parágrafo).\n- Encerramento cordial, ex: “Em breve entraremos em contato para alinhar o próximo passo.”\n\nExemplo de saída:\n> Olá, João! 👋\n> Entendi que seu principal objetivo é melhorar a presença online e que você já possui alguns canais ativos, como Instagram e loja virtual. Seu desafio atual parece estar ligado à falta de automação e estrutura nos processos internos.\n> Podemos iniciar com uma consultoria estratégica voltada à organização digital e criação de automações personalizadas."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        224,
+        544
+      ],
+      "id": "9808918e-ccdf-4c65-adcf-ca6cd5009b8d",
+      "name": "AI Agent2",
+      "notesInFlow": false,
+      "executeOnce": false,
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        224,
+        688
+      ],
+      "id": "0e275261-6910-4f04-b2f3-050daadaf53a",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "aUqWG9Hu0gNKqn8b",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "INSTANCIA ACTIVEBACKGROUND",
+        "remoteJid": "=+55{{ $('Consultoria Estratégica').item.json.body.phone }}",
+        "messageText": "={{ $json.output }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        576,
+        608
+      ],
+      "id": "ac3d58c6-a33b-4884-a2f1-f26870de73ad",
+      "name": "Enviar texto2",
+      "credentials": {
+        "evolutionApi": {
+          "id": "OMumhTKAtpAeMqgF",
+          "name": "Evolution account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Consultoria Estratégica').item.json.body.phone }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        320,
+        752
+      ],
+      "id": "3e1de929-407e-44eb-bf23-6a2ee0b69c5f",
+      "name": "Simple Memory2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c85b139f-991b-48e1-aee5-2975043def4d",
+              "name": "body",
+              "value": "={{ $json.body }}",
+              "type": "object"
+            },
+            {
+              "id": "83c2e9ff-87dc-4be4-a0a1-da3d850dd578",
+              "name": "body.questionnaire",
+              "value": "={{ $json.body.questionnaire }}",
+              "type": "object"
+            },
+            {
+              "id": "b0be5cd4-dfe1-4227-982a-abdac7c9e0e1",
+              "name": "body.submittedAt",
+              "value": "={{ $json.body.submittedAt }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -48,
+        544
+      ],
+      "id": "fd8bb9bb-a2f8-4994-baef-992b3b422465",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{JSON.stringify($json)}}",
+        "options": {
+          "systemMessage": "Você é o assistente virtual da empresa **Active Background**, especializada em consultoria estratégica, desenvolvimento de sites, automações e soluções digitais inteligentes.\n\nSeu papel é interpretar automaticamente os dados recebidos de um formulário de agendamento online, enviados via webhook, no formato JSON, que será fornecido no Prompt (User Message) - **NUNCA repita ou transcreva o JSON de entrada na saída**.\n\nOs dados incluem informações do cliente (name, company, email, phone, projectDetails), o serviço selecionado (serviceId/serviceName) e as respostas detalhadas a um questionário (questionnaire.answers).\n\nSua função é:\n1. **Interpretar o contexto** da solicitação de acordo com todas as respostas recebidas.\n2. **Gerar uma análise resumida e personalizada**, em tom humano, consultivo e empático, mostrando que você compreendeu a situação da empresa.\n3. **Sugerir próximos passos** relevantes e específicos para o cliente, como uma reunião de diagnóstico, proposta de automação, criação de site, ou consultoria estratégica.\n4. **Evitar linguagem genérica e frases de efeito vazias.** Cada mensagem deve parecer escrita sob medida para aquele cliente específico.\n5. **Jamais repetir os rótulos técnicos do JSON (ex: 'objetivo-principal').** Sempre transformar os dados em linguagem natural.\n6. **Prioridades de Resposta:**\n    * Se o serviço for “Consultoria Estratégica”, priorize identificar o momento do negócio e orientar um plano de ação inicial.\n    * **Se houver 'problema-urgente' (como \"TENHO UM PROBLEMA, MEU SITE ESTÁ FORA DO AR\") traga-o como a prioridade MÁXIMA na resposta e ofereça ação imediata.**\n    * Se o orçamento for “Baixo”, foque em soluções modulares e acessíveis; se “Alto”, destaque abordagens completas e estratégicas.\n    * Se “orcamento” for “Ainda não sei”, ofereça uma análise inicial gratuita ou reunião exploratória.\n7. Termine sempre de forma profissional e acolhedora, reforçando o nome “Active Background” e deixando o cliente confiante.\n\n**Formato esperado de saída (texto corrido, sem formatação Markdown, HTML ou JSON):**\n- Saudação personalizada pelo nome.\n- Diagnóstico rápido (1–2 parágrafos).\n- Sugestão de solução ou próximos passos (1 parágrafo).\n- Encerramento cordial, ex: “Em breve entraremos em contato para alinhar o próximo passo.”\n\nExemplo de saída:\n> Olá, João! 👋\n> Entendi que seu principal objetivo é melhorar a presença online e que você já possui alguns canais ativos, como Instagram e loja virtual. Seu desafio atual parece estar ligado à falta de automação e estrutura nos processos internos.\n> Podemos iniciar com uma consultoria estratégica voltada à organização digital e criação de automações personalizadas."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        112,
+        1040
+      ],
+      "id": "0528e53b-8043-4e57-8733-6f4c239b6f00",
+      "name": "AI Agent3",
+      "notesInFlow": false,
+      "executeOnce": false,
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        96,
+        1216
+      ],
+      "id": "d2163a54-fed4-4c84-854d-2736f49a3035",
+      "name": "OpenAI Chat Model3",
+      "credentials": {
+        "openAiApi": {
+          "id": "aUqWG9Hu0gNKqn8b",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "INSTANCIA ACTIVEBACKGROUND",
+        "remoteJid": "=+55{{ $('Consultoria Estratégica').item.json.body.phone }}",
+        "messageText": "={{ $json.output }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        544,
+        1040
+      ],
+      "id": "856b164c-1349-4480-bc77-c29b0e80d644",
+      "name": "Enviar texto3",
+      "credentials": {
+        "evolutionApi": {
+          "id": "OMumhTKAtpAeMqgF",
+          "name": "Evolution account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Consultoria Estratégica').item.json.body.phone }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        208,
+        1216
+      ],
+      "id": "ff859728-48db-49fb-971a-7378625aee34",
+      "name": "Simple Memory3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c85b139f-991b-48e1-aee5-2975043def4d",
+              "name": "body",
+              "value": "={{ $json.body }}",
+              "type": "object"
+            },
+            {
+              "id": "83c2e9ff-87dc-4be4-a0a1-da3d850dd578",
+              "name": "body.questionnaire",
+              "value": "={{ $json.body.questionnaire }}",
+              "type": "object"
+            },
+            {
+              "id": "b0be5cd4-dfe1-4227-982a-abdac7c9e0e1",
+              "name": "body.submittedAt",
+              "value": "={{ $json.body.submittedAt }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -48,
+        1040
+      ],
+      "id": "a241ac6b-08b4-49c8-8b58-52198b11381e",
+      "name": "Edit Fields3"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{JSON.stringify($json)}}",
+        "options": {
+          "systemMessage": "Você é o assistente virtual da empresa **Active Background**, especializada em consultoria estratégica, desenvolvimento de sites, automações e soluções digitais inteligentes.\n\nSeu papel é interpretar automaticamente os dados recebidos de um formulário de agendamento online, enviados via webhook, no formato JSON, que será fornecido no Prompt (User Message) - **NUNCA repita ou transcreva o JSON de entrada na saída**.\n\nOs dados incluem informações do cliente (name, company, email, phone, projectDetails), o serviço selecionado (serviceId/serviceName) e as respostas detalhadas a um questionário (questionnaire.answers).\n\nSua função é:\n1. **Interpretar o contexto** da solicitação de acordo com todas as respostas recebidas.\n2. **Gerar uma análise resumida e personalizada**, em tom humano, consultivo e empático, mostrando que você compreendeu a situação da empresa.\n3. **Sugerir próximos passos** relevantes e específicos para o cliente, como uma reunião de diagnóstico, proposta de automação, criação de site, ou consultoria estratégica.\n4. **Evitar linguagem genérica e frases de efeito vazias.** Cada mensagem deve parecer escrita sob medida para aquele cliente específico.\n5. **Jamais repetir os rótulos técnicos do JSON (ex: 'objetivo-principal').** Sempre transformar os dados em linguagem natural.\n6. **Prioridades de Resposta:**\n    * Se o serviço for “Consultoria Estratégica”, priorize identificar o momento do negócio e orientar um plano de ação inicial.\n    * **Se houver 'problema-urgente' (como \"TENHO UM PROBLEMA, MEU SITE ESTÁ FORA DO AR\") traga-o como a prioridade MÁXIMA na resposta e ofereça ação imediata.**\n    * Se o orçamento for “Baixo”, foque em soluções modulares e acessíveis; se “Alto”, destaque abordagens completas e estratégicas.\n    * Se “orcamento” for “Ainda não sei”, ofereça uma análise inicial gratuita ou reunião exploratória.\n7. Termine sempre de forma profissional e acolhedora, reforçando o nome “Active Background” e deixando o cliente confiante.\n\n**Formato esperado de saída (texto corrido, sem formatação Markdown, HTML ou JSON):**\n- Saudação personalizada pelo nome.\n- Diagnóstico rápido (1–2 parágrafos).\n- Sugestão de solução ou próximos passos (1 parágrafo).\n- Encerramento cordial, ex: “Em breve entraremos em contato para alinhar o próximo passo.”\n\nExemplo de saída:\n> Olá, João! 👋\n> Entendi que seu principal objetivo é melhorar a presença online e que você já possui alguns canais ativos, como Instagram e loja virtual. Seu desafio atual parece estar ligado à falta de automação e estrutura nos processos internos.\n> Podemos iniciar com uma consultoria estratégica voltada à organização digital e criação de automações personalizadas."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        416,
+        1600
+      ],
+      "id": "b89a469f-ebfe-453d-814a-2f6adb445a7f",
+      "name": "AI Agent4",
+      "notesInFlow": false,
+      "executeOnce": false,
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        432,
+        1920
+      ],
+      "id": "bec2a39d-7a85-4068-85ce-dcc217b010d5",
+      "name": "OpenAI Chat Model4",
+      "credentials": {
+        "openAiApi": {
+          "id": "aUqWG9Hu0gNKqn8b",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "INSTANCIA ACTIVEBACKGROUND",
+        "remoteJid": "=+55{{ $('Consultoria Estratégica').item.json.body.phone }}",
+        "messageText": "={{ $json.output }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        720,
+        1600
+      ],
+      "id": "e492290e-2b1b-491f-8bc0-48dd3747e36d",
+      "name": "Enviar texto4",
+      "credentials": {
+        "evolutionApi": {
+          "id": "OMumhTKAtpAeMqgF",
+          "name": "Evolution account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Consultoria Estratégica').item.json.body.phone }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        560,
+        1920
+      ],
+      "id": "57ed82db-a2df-49e9-8730-20e9575676b7",
+      "name": "Simple Memory4"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c85b139f-991b-48e1-aee5-2975043def4d",
+              "name": "body",
+              "value": "={{ $json.body }}",
+              "type": "object"
+            },
+            {
+              "id": "83c2e9ff-87dc-4be4-a0a1-da3d850dd578",
+              "name": "body.questionnaire",
+              "value": "={{ $json.body.questionnaire }}",
+              "type": "object"
+            },
+            {
+              "id": "b0be5cd4-dfe1-4227-982a-abdac7c9e0e1",
+              "name": "body.submittedAt",
+              "value": "={{ $json.body.submittedAt }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        1600
+      ],
+      "id": "7df0a55a-3fde-49b6-8acb-03b10586d132",
+      "name": "Edit Fields4"
     }
   ],
   "pinData": {},
@@ -341,16 +1001,16 @@
   },
   "shared": [
     {
-      "updatedAt": "2025-10-29T23:38:33.155Z",
-      "createdAt": "2025-10-29T23:38:33.155Z",
+      "updatedAt": "2025-11-02T00:08:53.247Z",
+      "createdAt": "2025-11-02T00:08:53.247Z",
       "role": "workflow:owner",
-      "workflowId": "7viq8lVXhjCK3zD0",
+      "workflowId": "cwnZKzlA6krifxjY",
       "projectId": "Zl3u1vsJTIYoa3dk"
     }
   ],
   "staticData": null,
   "tags": [],
-  "triggerCount": 1,
-  "updatedAt": "2025-10-31T11:17:06.372Z",
-  "versionId": "6949e8bd-ddfe-4a3a-9b88-0d7f4f535949"
+  "triggerCount": 5,
+  "updatedAt": "2025-11-02T17:45:36.833Z",
+  "versionId": "45ec0893-55eb-47c0-ac7f-caf73e3aad94"
 }
