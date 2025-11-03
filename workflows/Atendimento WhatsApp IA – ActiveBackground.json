@@ -1,6 +1,46 @@
 {
   "active": false,
   "connections": {
+    "Webhook - Receber Mensagem": {
+      "main": [
+        [
+          {
+            "node": "Set - Dados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set - Dados": {
+      "main": [
+        [
+          {
+            "node": "If - Enviar para IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If - Enviar para IA": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "OpenAI Chat Model": {
       "ai_languageModel": [
         [
@@ -25,27 +65,6 @@
     },
     "Postgres Chat Memory": {
       "ai_memory": [
-        []
-      ]
-    },
-    "code tool": {
-      "ai_tool": [
-        []
-      ]
-    },
-    "Consultoria Estratégica": {
-      "main": [
-        [
-          {
-            "node": "Edit Fields",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Simple Memory": {
-      "ai_memory": [
         [
           {
             "node": "AI Agent",
@@ -55,39 +74,177 @@
         ]
       ]
     },
-    "Edit Fields": {
-      "main": [
+    "code tool": {
+      "ai_tool": [
         [
           {
             "node": "AI Agent",
-            "type": "main",
+            "type": "ai_tool",
             "index": 0
           }
         ]
       ]
     }
   },
-  "createdAt": "2025-11-02T00:08:53.247Z",
-  "id": "cwnZKzlA6krifxjY",
+  "createdAt": "2025-10-29T23:38:33.155Z",
+  "id": "7viq8lVXhjCK3zD0",
   "isArchived": false,
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Atendimento WhatsApp IA – ActiveBackground",
   "nodes": [
     {
       "parameters": {
+        "httpMethod": "POST",
+        "path": "chatwoot-whatsapp",
+        "options": {}
+      },
+      "id": "ae9112fd-56d8-4af3-b314-24fb05e1625e",
+      "name": "Webhook - Receber Mensagem",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        -144,
+        0
+      ],
+      "typeVersion": 2.1,
+      "webhookId": "577bd90d-dac4-494d-96dd-16e0fa3e8802"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6502303a-7120-4d64-ae9a-9ea7ea6b60a2",
+              "name": "body.conversation.meta.sender.phone_number",
+              "value": "={{ $json.body.conversation.meta.sender.phone_number }}",
+              "type": "string"
+            },
+            {
+              "id": "bbffe22b-b2ea-4cc6-a733-bd29a4c642c7",
+              "name": "body.conversation.meta.sender.identifier",
+              "value": "={{ $json.body.conversation.meta.sender.identifier }}",
+              "type": "string"
+            },
+            {
+              "id": "983ecce1-7782-4226-b2ab-5d1a3db85105",
+              "name": "body.message_type",
+              "value": "={{ $json.body.message_type }}",
+              "type": "string"
+            },
+            {
+              "id": "1116e14f-0f41-4be9-b4ec-cd3b767be19e",
+              "name": "body.content",
+              "value": "={{ $json.body.content }}",
+              "type": "string"
+            },
+            {
+              "id": "f4446653-5665-427d-9f49-4e9247f7e4dd",
+              "name": "body.inbox",
+              "value": "={{ $json.body.inbox }}",
+              "type": "object"
+            },
+            {
+              "id": "d4e5ec7a-af13-46fc-a8a6-e47748ddf572",
+              "name": "body.conversation.messages[0].sender.available_name",
+              "value": "={{ $json.body.conversation.messages[0].sender.available_name }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "bcd3d516-4638-4609-9b42-de2e2de565cf",
+      "name": "Set - Dados",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        96,
+        0
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ae806359-8bc7-45d5-b574-ebfd7d818130",
+              "leftValue": "={{ $json.body.message_type }}",
+              "rightValue": "=outgoing",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "c64289a2-25fc-43c0-ad8f-ffd25ec5f384",
+      "name": "If - Enviar para IA",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        336,
+        0
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "11ce7d1c-78ce-451f-b0ed-51ad164a28e2",
+              "leftValue": "={{ $('Webhook - Receber Mensagem').item.json.body.source_id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        528,
+        -128
+      ],
+      "id": "651e85a1-a461-4fd4-a2b5-515390788837",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
         "promptType": "define",
-        "text": "={{JSON.stringify($json)}}",
+        "text": "={{ $json.body.content }}",
         "options": {
-          "systemMessage": "Você é o assistente virtual da empresa **Active Background**, especializada em consultoria estratégica, desenvolvimento de sites, automações e soluções digitais inteligentes.\n\nSeu papel é interpretar automaticamente os dados recebidos de um formulário de agendamento online, enviados via webhook, no formato JSON, que será fornecido no Prompt (User Message) - **NUNCA repita ou transcreva o JSON de entrada na saída**.\n\nOs dados incluem informações do cliente (name, company, email, phone, projectDetails), o serviço selecionado (serviceId/serviceName) e as respostas detalhadas a um questionário (questionnaire.answers).\n\nSua função é:\n1. **Interpretar o contexto** da solicitação de acordo com todas as respostas recebidas.\n2. **Gerar uma análise resumida e personalizada**, em tom humano, consultivo e empático, mostrando que você compreendeu a situação da empresa.\n3. **Sugerir próximos passos** relevantes e específicos para o cliente, como uma reunião de diagnóstico, proposta de automação, criação de site, ou consultoria estratégica.\n4. **Evitar linguagem genérica e frases de efeito vazias.** Cada mensagem deve parecer escrita sob medida para aquele cliente específico.\n5. **Jamais repetir os rótulos técnicos do JSON (ex: 'objetivo-principal').** Sempre transformar os dados em linguagem natural.\n6. **Prioridades de Resposta:**\n    * Se o serviço for “Consultoria Estratégica”, priorize identificar o momento do negócio e orientar um plano de ação inicial.\n    * **Se houver 'problema-urgente' (como \"TENHO UM PROBLEMA, MEU SITE ESTÁ FORA DO AR\") traga-o como a prioridade MÁXIMA na resposta e ofereça ação imediata.**\n    * Se o orçamento for “Baixo”, foque em soluções modulares e acessíveis; se “Alto”, destaque abordagens completas e estratégicas.\n    * Se “orcamento” for “Ainda não sei”, ofereça uma análise inicial gratuita ou reunião exploratória.\n7. Termine sempre de forma profissional e acolhedora, reforçando o nome “Active Background” e deixando o cliente confiante.\n\n**Formato esperado de saída (texto corrido, sem formatação Markdown, HTML ou JSON):**\n- Saudação personalizada pelo nome.\n- Diagnóstico rápido (1–2 parágrafos).\n- Sugestão de solução ou próximos passos (1 parágrafo).\n- Encerramento cordial, ex: “Em breve entraremos em contato para alinhar o próximo passo.”\n\nExemplo de saída:\n> Olá, João! 👋\n> Entendi que seu principal objetivo é melhorar a presença online e que você já possui alguns canais ativos, como Instagram e loja virtual. Seu desafio atual parece estar ligado à falta de automação e estrutura nos processos internos.\n> Podemos iniciar com uma consultoria estratégica voltada à organização digital e criação de automações personalizadas."
+          "systemMessage": "Você é Felipe Goulart, especialista em desenvolvimento de websites (Front-end e Back-end), automações e criação de imagens, e atua na Active Background.\n\n**Seu Estilo e Personalidade:**\n1. Fale de forma natural, inteligente, experiente e leve.\n2. Use linguagem próxima, com personalidade (pode usar gírias ou expressões de bate-papo).\n3. Vá direto ao ponto. Explique o necessário, sem enrolação.\n4. Seja confiante, tranquilo e mostre interesse prático no problema do usuário.\n5. JAMais diga que é uma IA ou um robô. Você é o Felipe, um parceiro de trabalho.\n\n**Seu Foco Principal:**\nAjudar com criação/desenvolvimento de sites, automações (n8n, bots, integrações) e design/criação de imagens.\n\n---\n\n**INSTRUÇÃO CRUCIAL PARA FERRAMENTAS (TOOLS):**\n\n1. **InfoServicos:**\n   Quando o usuário pedir informações sobre os serviços da Active Background — como *sites, automações, imagens ou sistemas* — **VOCÊ DEVE** utilizar a ferramenta `InfoServicos`.\n   Ela retorna descrições detalhadas sobre o serviço solicitado (ex: \"sites\").\n   **Sempre chame essa ferramenta antes de responder** quando o usuário quiser saber *o que você faz*, *sobre seus serviços* ou *como pode ajudar*.\n\nATENÇÃO: SEMPRE QUE ENVIAR MENSAGEM, ENVIA NO COMEÇO DA MENSAGEM:\n*ActiveBackground - Felipe*"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3,
       "position": [
-        224,
-        -160
+        560,
+        64
       ],
-      "id": "9fb33abe-887a-4728-885a-f0413bfe5af5",
+      "id": "83bea48c-c466-4513-b8ca-7bf5e679b08f",
       "name": "AI Agent",
       "notesInFlow": false,
       "executeOnce": false,
@@ -106,10 +263,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        176,
-        48
+        512,
+        256
       ],
-      "id": "d7126725-2594-4309-94b8-c2913ea45108",
+      "id": "287babbe-0474-42b1-a0f1-6df17abd6386",
       "name": "OpenAI Chat Model",
       "credentials": {
         "openAiApi": {
@@ -122,17 +279,17 @@
       "parameters": {
         "resource": "messages-api",
         "instanceName": "INSTANCIA ACTIVEBACKGROUND",
-        "remoteJid": "={{ $('Consultoria Estratégica').item.json.body.phone }}",
+        "remoteJid": "={{ $('If - Enviar para IA').item.json.body.conversation.meta.sender.phone_number }}",
         "messageText": "={{ $json.output }}",
         "options_message": {}
       },
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        544,
-        -160
+        960,
+        64
       ],
-      "id": "0c62d779-278c-4ed0-9882-250cd1b4c0a5",
+      "id": "c0777438-398f-428a-bfd9-5fbae3749465",
       "name": "Enviar texto",
       "credentials": {
         "evolutionApi": {
@@ -144,16 +301,16 @@
     {
       "parameters": {
         "sessionIdType": "customKey",
-        "sessionKey": "=",
+        "sessionKey": "={{ $('If - Enviar para IA').item.json.body.conversation.meta.sender.phone_number }}",
         "contextWindowLength": 10
       },
       "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
       "typeVersion": 1.3,
       "position": [
-        688,
-        240
+        624,
+        320
       ],
-      "id": "5304bee3-b700-48f8-b437-21b2de43d405",
+      "id": "6b3b8823-2244-4226-bbb7-9c94df2c8236",
       "name": "Postgres Chat Memory",
       "credentials": {
         "postgres": {
@@ -170,220 +327,30 @@
       "type": "@n8n/n8n-nodes-langchain.toolCode",
       "typeVersion": 1.3,
       "position": [
-        752,
-        96
+        768,
+        320
       ],
-      "id": "36afd099-58d0-4e58-8135-72d51a4d39d0",
+      "id": "15e605e3-0c9d-40a1-9c0e-073d76a9a37d",
       "name": "code tool",
       "notesInFlow": false
-    },
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "a39b21d1-51ed-4cbf-96e9-1ba80ed374c2",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2.1,
-      "position": [
-        -272,
-        -144
-      ],
-      "id": "2f262b8d-0d8d-418a-ae16-8a8972261a04",
-      "name": "Consultoria Estratégica",
-      "webhookId": "a39b21d1-51ed-4cbf-96e9-1ba80ed374c2"
-    },
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "660c2603-ae7d-48ed-8cd2-7a634b3aa6f2",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2.1,
-      "position": [
-        -80,
-        176
-      ],
-      "id": "e36863c9-b827-492e-a706-2c56ce6dc985",
-      "name": "Desenvolvimento de Sites e Plataformas",
-      "webhookId": "660c2603-ae7d-48ed-8cd2-7a634b3aa6f2"
-    },
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "384e2516-1a91-4652-a487-48bb8713594a",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2.1,
-      "position": [
-        -32,
-        416
-      ],
-      "id": "c3190115-5dc5-4181-9aab-0f15b3dee0a2",
-      "name": "Automação e Integrações Inteligentes (n8n, APIs)",
-      "webhookId": "384e2516-1a91-4652-a487-48bb8713594a"
-    },
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "b0d8f974-86b9-48d9-8631-ee268cb6fb78",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2.1,
-      "position": [
-        -32,
-        656
-      ],
-      "id": "cee545ae-c27a-4f03-a0a0-e17a4fe2e657",
-      "name": "Pacote de Marketing e Criação de Conteúdo",
-      "webhookId": "b0d8f974-86b9-48d9-8631-ee268cb6fb78"
-    },
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "06b9a4c5-689d-4d92-87f1-bc389b01b812",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2.1,
-      "position": [
-        -32,
-        880
-      ],
-      "id": "7138a111-c412-45e6-aee3-266c06570ac3",
-      "name": "Pacote Start – Transforme sua Empresa Digitalmente",
-      "webhookId": "06b9a4c5-689d-4d92-87f1-bc389b01b812"
-    },
-    {
-      "parameters": {
-        "sessionIdType": "customKey",
-        "sessionKey": "={{ $('Consultoria Estratégica').item.json.body.phone }}"
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-      "typeVersion": 1.3,
-      "position": [
-        320,
-        96
-      ],
-      "id": "d8f12052-b825-4558-ba66-8e18a2d0eb9b",
-      "name": "Simple Memory"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "c85b139f-991b-48e1-aee5-2975043def4d",
-              "name": "body",
-              "value": "={{ $json.body }}",
-              "type": "object"
-            },
-            {
-              "id": "83c2e9ff-87dc-4be4-a0a1-da3d850dd578",
-              "name": "body.questionnaire",
-              "value": "={{ $json.body.questionnaire }}",
-              "type": "object"
-            },
-            {
-              "id": "b0be5cd4-dfe1-4227-982a-abdac7c9e0e1",
-              "name": "body.submittedAt",
-              "value": "={{ $json.body.submittedAt }}",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        -32,
-        -144
-      ],
-      "id": "0e4a11e9-f70e-4210-a3fc-813a495656c4",
-      "name": "Edit Fields"
     }
   ],
-  "pinData": {
-    "Consultoria Estratégica": [
-      {
-        "json": {
-          "headers": {
-            "host": "n8n.activebackground.com.br",
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
-            "content-length": "987",
-            "accept": "*/*",
-            "accept-encoding": "gzip, deflate, br, zstd",
-            "accept-language": "pt-PT,pt;q=0.9,en-US;q=0.8,en;q=0.7",
-            "content-type": "application/json",
-            "cookie": "rl_anonymous_id=RudderEncrypt%3AU2FsdGVkX19LdQaOpNA9FvYXuYGHBYvlmvOb1NfnBntUuN%2FbK%2BpqkerW%2FzOdow2lCdD7jM1iz%2F3WkqRz8dYLfg%3D%3D; rl_page_init_referrer=RudderEncrypt%3AU2FsdGVkX1%2FIHKHht9fwa7PFa7zcDavH9z4Ro8JLPXY%3D; rl_page_init_referring_domain=RudderEncrypt%3AU2FsdGVkX1%2Bedq5smu5Eekcan%2BbBLm6p%2FH%2Fa5IsDIVE%3D; rl_session=RudderEncrypt%3AU2FsdGVkX1%2B8jPtdPLI7UMD0j%2FKcUUF%2FtBBHxpTIFhqud4IhpNWtiQPamSuCtMwddIv%2BWKaLeQEn34314L1%2BRgdjeKhA5ydWNUD0E2oEzDi4Me%2F9YWO2EZXcoL2W5FEMEGBo3u1XpNEvHiRRDZF28w%3D%3D; _visitor_id=vis_1761005527018_5906agim8",
-            "origin": "http://localhost:8080",
-            "referer": "http://localhost:8080/booking",
-            "sec-ch-ua": "\"Google Chrome\";v=\"141\", \"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"141\"",
-            "sec-ch-ua-mobile": "?0",
-            "sec-ch-ua-platform": "\"Windows\"",
-            "sec-fetch-dest": "empty",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-site": "same-origin",
-            "x-forwarded-for": "45.163.62.2",
-            "x-forwarded-host": "n8n.activebackground.com.br",
-            "x-forwarded-port": "443",
-            "x-forwarded-proto": "https",
-            "x-forwarded-server": "0989b8eaf7cb",
-            "x-real-ip": "45.163.62.2"
-          },
-          "params": {},
-          "query": {},
-          "body": {
-            "serviceId": "consultoria-estrategica",
-            "serviceName": "Consultoria Estratégica",
-            "name": "felipe goulart",
-            "company": "TRANSPORTE PRO",
-            "email": "felipe.goulart06@hotmail.com",
-            "phone": "(47) 98933-6609",
-            "projectDetails": "Eu tenho uma empresa de transporte executivo, com mais de 1000 motoristas no Brasil inteiro, e minha idéia é fazer envio em massa para contatos da minha agenda e convertê-los em Leads",
-            "questionnaire": {
-              "answers": {
-                "objetivo-principal": "Vender mais",
-                "possui-sistemas": "Sim",
-                "canais-atuais": "Todos",
-                "problema-urgente": "Preciso captar mais leads, qualificá-los e convertê-los em clientes",
-                "foco-consultoria": "Estratégia digital geral",
-                "planejamento-estrategico": "Não",
-                "organizacao-processos": "Razoavelmente organizado",
-                "desafio-digital": "Falta de vendas",
-                "orcamento": "Médio",
-                "resultados-apos-consultoria": "Quero aumentar a taxa de conversão, e a recorrencia dos meus clientes"
-              },
-              "answerCount": 10
-            },
-            "submittedAt": "2025-11-02T02:22:28.800Z",
-            "source": "booking-client-info"
-          },
-          "webhookUrl": "https://webhook.activebackground.com.br/webhook-test/a39b21d1-51ed-4cbf-96e9-1ba80ed374c2",
-          "executionMode": "test"
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1"
   },
   "shared": [
     {
-      "updatedAt": "2025-11-02T00:08:53.247Z",
-      "createdAt": "2025-11-02T00:08:53.247Z",
+      "updatedAt": "2025-10-29T23:38:33.155Z",
+      "createdAt": "2025-10-29T23:38:33.155Z",
       "role": "workflow:owner",
-      "workflowId": "cwnZKzlA6krifxjY",
+      "workflowId": "7viq8lVXhjCK3zD0",
       "projectId": "Zl3u1vsJTIYoa3dk"
     }
   ],
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-11-02T02:41:53.268Z",
-  "versionId": "81283ca4-cfc7-4c16-96e8-f5d9a017bfc6"
+  "triggerCount": 1,
+  "updatedAt": "2025-10-31T11:17:06.372Z",
+  "versionId": "6949e8bd-ddfe-4a3a-9b88-0d7f4f535949"
 }
