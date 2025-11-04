@@ -23,16 +23,6 @@
         ]
       ]
     },
-    "Postgres Chat Memory": {
-      "ai_memory": [
-        []
-      ]
-    },
-    "code tool": {
-      "ai_tool": [
-        []
-      ]
-    },
     "Consultoria Estratégica": {
       "main": [
         [
@@ -287,8 +277,8 @@
       ]
     }
   },
-  "createdAt": "2025-11-02T00:08:53.247Z",
-  "id": "cwnZKzlA6krifxjY",
+  "createdAt": "2025-11-04T15:30:13.006Z",
+  "id": "pJ6Hgx1LRIZ4RMKo",
   "isArchived": false,
   "meta": null,
   "name": "Atendimento WhatsApp IA – ActiveBackground",
@@ -304,10 +294,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3,
       "position": [
-        208,
-        -368
+        -80,
+        -64
       ],
-      "id": "9fb33abe-887a-4728-885a-f0413bfe5af5",
+      "id": "0178fb47-75e4-44f5-9e64-40c7d63e0a09",
       "name": "AI Agent",
       "notesInFlow": false,
       "executeOnce": false,
@@ -326,40 +316,23 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        144,
-        -160
+        -144,
+        144
       ],
-      "id": "d7126725-2594-4309-94b8-c2913ea45108",
-      "name": "OpenAI Chat Model",
-      "credentials": {
-        "openAiApi": {
-          "id": "aUqWG9Hu0gNKqn8b",
-          "name": "OpenAi account"
-        }
-      }
+      "id": "32b9f800-e984-4723-9402-aa1205d00568",
+      "name": "OpenAI Chat Model"
     },
     {
-      "parameters": {
-        "resource": "messages-api",
-        "instanceName": "INSTANCIA ACTIVEBACKGROUND",
-        "remoteJid": "=+55{{ $('Consultoria Estratégica').item.json.body.phone }}",
-        "messageText": "={{ $json.output }}",
-        "options_message": {}
-      },
+      "parameters": {},
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        528,
-        -368
+        240,
+        -64
       ],
-      "id": "0c62d779-278c-4ed0-9882-250cd1b4c0a5",
+      "id": "1e245275-6c0a-4f69-9dc2-bca57bda5f3f",
       "name": "Enviar texto",
-      "credentials": {
-        "evolutionApi": {
-          "id": "OMumhTKAtpAeMqgF",
-          "name": "Evolution account"
-        }
-      }
+      "credentials": {}
     },
     {
       "parameters": {
@@ -370,17 +343,11 @@
       "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
       "typeVersion": 1.3,
       "position": [
-        816,
-        -448
+        528,
+        -144
       ],
-      "id": "5304bee3-b700-48f8-b437-21b2de43d405",
-      "name": "Postgres Chat Memory",
-      "credentials": {
-        "postgres": {
-          "id": "3dk8RUr6B35tLvfC",
-          "name": "Postgres account"
-        }
-      }
+      "id": "f7b0fb77-5cd7-4c86-ae56-ea36b592d6a6",
+      "name": "Postgres Chat Memory"
     },
     {
       "parameters": {
@@ -390,10 +357,10 @@
       "type": "@n8n/n8n-nodes-langchain.toolCode",
       "typeVersion": 1.3,
       "position": [
-        1008,
-        -320
+        720,
+        -16
       ],
-      "id": "36afd099-58d0-4e58-8135-72d51a4d39d0",
+      "id": "97d538b9-07b8-4478-ba76-db34f3538850",
       "name": "code tool",
       "notesInFlow": false
     },
@@ -406,10 +373,10 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -288,
-        -352
+        -576,
+        -48
       ],
-      "id": "2f262b8d-0d8d-418a-ae16-8a8972261a04",
+      "id": "6c400a4f-8f3e-42ce-9a9b-f244422c48ad",
       "name": "Consultoria Estratégica",
       "webhookId": "a39b21d1-51ed-4cbf-96e9-1ba80ed374c2"
     },
@@ -422,10 +389,10 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        256,
-        128
+        -32,
+        432
       ],
-      "id": "e36863c9-b827-492e-a706-2c56ce6dc985",
+      "id": "2a19d296-e003-4c1d-a98b-5b3101bab3a4",
       "name": "Desenvolvimento de Sites e Plataformas",
       "webhookId": "660c2603-ae7d-48ed-8cd2-7a634b3aa6f2"
     },
@@ -438,10 +405,10 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -288,
-        528
+        -576,
+        832
       ],
-      "id": "c3190115-5dc5-4181-9aab-0f15b3dee0a2",
+      "id": "32c3e6ca-94b3-4820-9b51-1b3bfa5b014b",
       "name": "Automação e Integrações Inteligentes (n8n, APIs)",
       "webhookId": "384e2516-1a91-4652-a487-48bb8713594a"
     },
@@ -454,10 +421,10 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -272,
-        1024
+        -560,
+        1328
       ],
-      "id": "cee545ae-c27a-4f03-a0a0-e17a4fe2e657",
+      "id": "45eb8508-4fad-4200-abf0-fa3e12497aa7",
       "name": "Pacote de Marketing e Criação de Conteúdo",
       "webhookId": "b0d8f974-86b9-48d9-8631-ee268cb6fb78"
     },
@@ -470,10 +437,10 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -32,
-        1600
+        -320,
+        1904
       ],
-      "id": "7138a111-c412-45e6-aee3-266c06570ac3",
+      "id": "bbb5b380-4125-4bc6-b315-aefcad8da886",
       "name": "Pacote Start – Transforme sua Empresa Digitalmente",
       "webhookId": "06b9a4c5-689d-4d92-87f1-bc389b01b812"
     },
@@ -485,10 +452,10 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        288,
-        -160
+        0,
+        144
       ],
-      "id": "d8f12052-b825-4558-ba66-8e18a2d0eb9b",
+      "id": "e04bf646-3339-4105-91e3-0ca850d03743",
       "name": "Simple Memory"
     },
     {
@@ -520,10 +487,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -48,
-        -352
+        -336,
+        -48
       ],
-      "id": "0e4a11e9-f70e-4210-a3fc-813a495656c4",
+      "id": "b2c8897b-4206-4a00-b2c5-9d178488c7aa",
       "name": "Edit Fields"
     },
     {
@@ -537,10 +504,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3,
       "position": [
-        656,
-        80
+        368,
+        384
       ],
-      "id": "3f4365e9-94e1-41db-bd78-da18b86b20bc",
+      "id": "a0ceac41-7529-493d-b1f8-33b3ab709ad1",
       "name": "AI Agent1",
       "notesInFlow": false,
       "executeOnce": false,
@@ -559,40 +526,23 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        608,
-        288
+        320,
+        592
       ],
-      "id": "0bba4dca-0748-4ed0-9590-afa2d20d62bb",
-      "name": "OpenAI Chat Model1",
-      "credentials": {
-        "openAiApi": {
-          "id": "aUqWG9Hu0gNKqn8b",
-          "name": "OpenAi account"
-        }
-      }
+      "id": "354efe49-114c-4b72-8d44-ac00eed55def",
+      "name": "OpenAI Chat Model1"
     },
     {
-      "parameters": {
-        "resource": "messages-api",
-        "instanceName": "INSTANCIA ACTIVEBACKGROUND",
-        "remoteJid": "=+55{{ $('Consultoria Estratégica').item.json.body.phone }}",
-        "messageText": "={{ $json.output }}",
-        "options_message": {}
-      },
+      "parameters": {},
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        976,
-        80
+        688,
+        384
       ],
-      "id": "d4e1d721-8892-4e61-a1f6-886cf1b9d691",
+      "id": "b4131f3a-5f9a-4b3c-b5ff-096bfe0a5ab6",
       "name": "Enviar texto1",
-      "credentials": {
-        "evolutionApi": {
-          "id": "OMumhTKAtpAeMqgF",
-          "name": "Evolution account"
-        }
-      }
+      "credentials": {}
     },
     {
       "parameters": {
@@ -602,10 +552,10 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        752,
-        336
+        464,
+        640
       ],
-      "id": "a0e0f0ed-1952-47e4-9465-b9d0356e5dea",
+      "id": "3658b601-6db8-4cc4-99b8-720ff43c6154",
       "name": "Simple Memory1"
     },
     {
@@ -637,10 +587,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        464,
-        80
+        176,
+        384
       ],
-      "id": "c0f5235e-3c40-4db5-b390-39de443366f5",
+      "id": "1eedae8d-30aa-4cd3-a29a-26b5fcef3be7",
       "name": "Edit Fields1"
     },
     {
@@ -654,10 +604,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3,
       "position": [
-        224,
-        544
+        -64,
+        848
       ],
-      "id": "9808918e-ccdf-4c65-adcf-ca6cd5009b8d",
+      "id": "00736e8a-4900-47b9-bf9c-132ee0c77862",
       "name": "AI Agent2",
       "notesInFlow": false,
       "executeOnce": false,
@@ -676,40 +626,23 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        224,
-        688
+        -64,
+        992
       ],
-      "id": "0e275261-6910-4f04-b2f3-050daadaf53a",
-      "name": "OpenAI Chat Model2",
-      "credentials": {
-        "openAiApi": {
-          "id": "aUqWG9Hu0gNKqn8b",
-          "name": "OpenAi account"
-        }
-      }
+      "id": "ce409022-ce09-4144-bebe-0eda04e72b4f",
+      "name": "OpenAI Chat Model2"
     },
     {
-      "parameters": {
-        "resource": "messages-api",
-        "instanceName": "INSTANCIA ACTIVEBACKGROUND",
-        "remoteJid": "=+55{{ $('Consultoria Estratégica').item.json.body.phone }}",
-        "messageText": "={{ $json.output }}",
-        "options_message": {}
-      },
+      "parameters": {},
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        576,
-        608
+        288,
+        912
       ],
-      "id": "ac3d58c6-a33b-4884-a2f1-f26870de73ad",
+      "id": "025ff93f-4593-4913-b3ab-08b2f737f337",
       "name": "Enviar texto2",
-      "credentials": {
-        "evolutionApi": {
-          "id": "OMumhTKAtpAeMqgF",
-          "name": "Evolution account"
-        }
-      }
+      "credentials": {}
     },
     {
       "parameters": {
@@ -719,10 +652,10 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        320,
-        752
+        32,
+        1056
       ],
-      "id": "3e1de929-407e-44eb-bf23-6a2ee0b69c5f",
+      "id": "df70107f-544b-4503-811e-38879dcfb445",
       "name": "Simple Memory2"
     },
     {
@@ -754,10 +687,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -48,
-        544
+        -336,
+        848
       ],
-      "id": "fd8bb9bb-a2f8-4994-baef-992b3b422465",
+      "id": "fee15e40-4436-4a72-b64e-9edf0e6fab80",
       "name": "Edit Fields2"
     },
     {
@@ -771,10 +704,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3,
       "position": [
-        112,
-        1040
+        -176,
+        1344
       ],
-      "id": "0528e53b-8043-4e57-8733-6f4c239b6f00",
+      "id": "f74a460f-1b92-4ffc-aef1-9c1f4ef2eb0c",
       "name": "AI Agent3",
       "notesInFlow": false,
       "executeOnce": false,
@@ -793,40 +726,23 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        96,
-        1216
+        -192,
+        1520
       ],
-      "id": "d2163a54-fed4-4c84-854d-2736f49a3035",
-      "name": "OpenAI Chat Model3",
-      "credentials": {
-        "openAiApi": {
-          "id": "aUqWG9Hu0gNKqn8b",
-          "name": "OpenAi account"
-        }
-      }
+      "id": "f5e486c5-33a2-47aa-8c8b-b5ded8ff7d13",
+      "name": "OpenAI Chat Model3"
     },
     {
-      "parameters": {
-        "resource": "messages-api",
-        "instanceName": "INSTANCIA ACTIVEBACKGROUND",
-        "remoteJid": "=+55{{ $('Consultoria Estratégica').item.json.body.phone }}",
-        "messageText": "={{ $json.output }}",
-        "options_message": {}
-      },
+      "parameters": {},
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        544,
-        1040
+        256,
+        1344
       ],
-      "id": "856b164c-1349-4480-bc77-c29b0e80d644",
+      "id": "8ed712c5-1ba2-47fc-8ede-6d9a27613d6b",
       "name": "Enviar texto3",
-      "credentials": {
-        "evolutionApi": {
-          "id": "OMumhTKAtpAeMqgF",
-          "name": "Evolution account"
-        }
-      }
+      "credentials": {}
     },
     {
       "parameters": {
@@ -836,10 +752,10 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        208,
-        1216
+        -80,
+        1520
       ],
-      "id": "ff859728-48db-49fb-971a-7378625aee34",
+      "id": "5df27dc7-438d-4bfd-b7cd-1f67f4d9d0f3",
       "name": "Simple Memory3"
     },
     {
@@ -871,10 +787,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -48,
-        1040
+        -336,
+        1344
       ],
-      "id": "a241ac6b-08b4-49c8-8b58-52198b11381e",
+      "id": "970ce0c6-bc9c-4f25-833f-4d2d6e6d8750",
       "name": "Edit Fields3"
     },
     {
@@ -888,10 +804,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3,
       "position": [
-        416,
-        1600
+        128,
+        1904
       ],
-      "id": "b89a469f-ebfe-453d-814a-2f6adb445a7f",
+      "id": "b1a88be5-bf8b-4281-a52d-ae4e60987180",
       "name": "AI Agent4",
       "notesInFlow": false,
       "executeOnce": false,
@@ -910,40 +826,23 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        432,
-        1920
+        144,
+        2224
       ],
-      "id": "bec2a39d-7a85-4068-85ce-dcc217b010d5",
-      "name": "OpenAI Chat Model4",
-      "credentials": {
-        "openAiApi": {
-          "id": "aUqWG9Hu0gNKqn8b",
-          "name": "OpenAi account"
-        }
-      }
+      "id": "b8f601e5-3268-4f3a-9d6d-a2bde2b9b083",
+      "name": "OpenAI Chat Model4"
     },
     {
-      "parameters": {
-        "resource": "messages-api",
-        "instanceName": "INSTANCIA ACTIVEBACKGROUND",
-        "remoteJid": "=+55{{ $('Consultoria Estratégica').item.json.body.phone }}",
-        "messageText": "={{ $json.output }}",
-        "options_message": {}
-      },
+      "parameters": {},
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        720,
-        1600
+        432,
+        1904
       ],
-      "id": "e492290e-2b1b-491f-8bc0-48dd3747e36d",
+      "id": "46b96a91-1ed9-41ce-bd63-a38292f6ce74",
       "name": "Enviar texto4",
-      "credentials": {
-        "evolutionApi": {
-          "id": "OMumhTKAtpAeMqgF",
-          "name": "Evolution account"
-        }
-      }
+      "credentials": {}
     },
     {
       "parameters": {
@@ -953,10 +852,10 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        560,
-        1920
+        272,
+        2224
       ],
-      "id": "57ed82db-a2df-49e9-8730-20e9575676b7",
+      "id": "c9ab3800-6f0a-4b3f-bedb-bcb03008c344",
       "name": "Simple Memory4"
     },
     {
@@ -988,10 +887,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        208,
-        1600
+        -80,
+        1904
       ],
-      "id": "7df0a55a-3fde-49b6-8acb-03b10586d132",
+      "id": "0943af8a-2aa6-42ab-bc70-cf3dda8ced3b",
       "name": "Edit Fields4"
     }
   ],
@@ -1001,16 +900,16 @@
   },
   "shared": [
     {
-      "updatedAt": "2025-11-02T00:08:53.247Z",
-      "createdAt": "2025-11-02T00:08:53.247Z",
+      "updatedAt": "2025-11-04T15:30:13.006Z",
+      "createdAt": "2025-11-04T15:30:13.006Z",
       "role": "workflow:owner",
-      "workflowId": "cwnZKzlA6krifxjY",
-      "projectId": "Zl3u1vsJTIYoa3dk"
+      "workflowId": "pJ6Hgx1LRIZ4RMKo",
+      "projectId": "AC5w1KWNzlUPDJxM"
     }
   ],
   "staticData": null,
   "tags": [],
-  "triggerCount": 5,
-  "updatedAt": "2025-11-02T17:45:36.833Z",
-  "versionId": "45ec0893-55eb-47c0-ac7f-caf73e3aad94"
+  "triggerCount": 0,
+  "updatedAt": "2025-11-04T15:30:13.006Z",
+  "versionId": "5b81830c-b41e-420c-bcdb-b88daf64f83f"
 }
