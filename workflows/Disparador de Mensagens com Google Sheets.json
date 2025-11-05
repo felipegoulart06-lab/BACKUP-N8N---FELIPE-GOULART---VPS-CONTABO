@@ -1,0 +1,690 @@
+{
+  "active": false,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Infos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Infos": {
+      "main": [
+        [
+          {
+            "node": "Validação de Horário",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validação de Horário": {
+      "main": [
+        [
+          {
+            "node": "Pegar Contatos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pegar Contatos": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Formatador",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verificar Número": {
+      "main": [
+        [
+          {
+            "node": "Existe?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Formatador": {
+      "main": [
+        [
+          {
+            "node": "Verificar Número",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Existe?": {
+      "main": [
+        [
+          {
+            "node": "Gerador de Delay",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Contato Inválido",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Contato Inválido": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delay": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Atualizar Status": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gerador de Delay": {
+      "main": [
+        [
+          {
+            "node": "Delay",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto": {
+      "main": [
+        [
+          {
+            "node": "Atualizar Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-05T00:35:47.130Z",
+  "id": "4GrQ49pwDVmkf958",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Disparador de Mensagens com Google Sheets",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5cbd3a41-2e44-4062-bb4b-86ccdbc09a0d",
+              "name": "limite_disparos",
+              "value": "3",
+              "type": "string"
+            },
+            {
+              "id": "eec9e4f2-84cf-4226-b152-28607b6cc74f",
+              "name": "horario_inicial",
+              "value": 7,
+              "type": "number"
+            },
+            {
+              "id": "fa4ef242-d8ec-4eac-b776-17568d89e370",
+              "name": "horario_final",
+              "value": 15,
+              "type": "number"
+            },
+            {
+              "id": "7b33f159-9f32-4a49-aedd-f4f307321dac",
+              "name": "delay_minimo",
+              "value": "5",
+              "type": "string"
+            },
+            {
+              "id": "2f74d15f-9463-408b-b889-c181d93ac231",
+              "name": "delay_maximo",
+              "value": "10",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        160,
+        0
+      ],
+      "id": "c028b97c-9ed4-4ed2-a1e4-6e99cad37ff3",
+      "name": "Infos"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "2d691e03-95d6-4e36-b176-48d5fbc19129",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f57fac2d-480a-4a68-9589-3002c2403d10",
+              "leftValue": "={{ $now.format('HH').toNumber() }}",
+              "rightValue": "={{ $json.horario_inicial }}",
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            },
+            {
+              "id": "440c031f-2e70-4baa-9f1b-4bcd714bf0d6",
+              "leftValue": "={{ $now.format('HH').toNumber() }}",
+              "rightValue": "={{ $json.horario_final }}",
+              "operator": {
+                "type": "number",
+                "operation": "lte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        320,
+        0
+      ],
+      "id": "4f7e5218-0fcb-4675-bf62-d353a8a7091d",
+      "name": "Validação de Horário"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1jQ57uZs_g-j1tocbdddaIjs8HTYaqkEpwAUtDstbNT8/edit?gid=663199592#gid=663199592",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 663199592,
+          "mode": "list",
+          "cachedResultName": "Contatos",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jQ57uZs_g-j1tocbdddaIjs8HTYaqkEpwAUtDstbNT8/edit#gid=663199592"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Status",
+              "lookupValue": "aguardando"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        0,
+        144
+      ],
+      "id": "4eba77c3-7d43-4523-97ac-9f7afd7d002c",
+      "name": "Pegar Contatos",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "OhYBLRWngyO2Z1gB",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "maxItems": "={{ $('Infos').item.json.limite_disparos }}"
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        160,
+        144
+      ],
+      "id": "97755adb-317a-4b04-b2e7-4584dc692c0c",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "instanceName": "ActiveBackground",
+        "token": "3251BC290B50-4FE9-A78C-A1B3FD64B81B",
+        "options_Create_instance": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        160,
+        288
+      ],
+      "id": "1f2f27d7-c1ff-47f0-ab04-7af1940c9da2",
+      "name": "Verificar Número",
+      "credentials": {
+        "evolutionApi": {
+          "id": "ad3EjBy0FkiYskMI",
+          "name": "Evolution account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        320,
+        144
+      ],
+      "id": "592bddab-c8ee-4f5a-82e4-63bca44afa5c",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Pega o telefone do input\nlet telefone = $input.first().json.Telefone;\n\n// Remove todos os caracteres não numéricos\ntelefone = telefone.toString().replace(/\\D/g, '');\n\n// Remove o código do país se já existir (55)\nif (telefone.startsWith('55')) {\n  telefone = telefone.substring(2);\n}\n\n// Verifica se o telefone tem pelo menos 10 dígitos (DDD + número)\nif (telefone.length < 10) {\n  throw new Error('Telefone inválido: deve ter pelo menos 10 dígitos');\n}\n\n// Extrai o DDD (primeiros 2 dígitos)\nconst ddd = parseInt(telefone.substring(0, 2));\n\n// Extrai o número sem o DDD\nlet numero = telefone.substring(2);\n\n// Remove o 9º dígito se já existir (para reprocessar)\nif (numero.length === 9 && numero.startsWith('9')) {\n  numero = numero.substring(1);\n}\n\n// Aplica a regra: se DDD <= 21, adiciona 9 após 55\nlet telefoneFormatado;\nif (ddd <= 21) {\n  telefoneFormatado = `559${ddd.toString().padStart(2, '0')}${numero}`;\n} else {\n  telefoneFormatado = `55${ddd.toString().padStart(2, '0')}${numero}`;\n}\n\n// Retorna o resultado\nreturn [\n  {\n    json: {\n      telefoneFormatado: telefoneFormatado,\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        0,
+        288
+      ],
+      "id": "57b36bf4-00d8-4d3e-a0cb-7d2050313745",
+      "name": "Formatador"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d04b556e-a149-4e0a-a0d5-12bc2cb280e8",
+              "leftValue": "={{ $json.data[0].exists }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        320,
+        288
+      ],
+      "id": "31992ae7-31e9-42c0-8f84-ece099df01b4",
+      "name": "Existe?"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/17xHVRAgCk0QucpBnG5yMvIj4KKTYqYFjYqTjMMQibpY/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Contatos",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/17xHVRAgCk0QucpBnG5yMvIj4KKTYqYFjYqTjMMQibpY/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": "={{ $('Loop Over Items').item.json.row_number }}",
+            "Status": "Inválido",
+            "Data de Atualização": "={{ $now.format('dd-MM-yyyy') }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Nome",
+              "displayName": "Nome",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Telefone",
+              "displayName": "Telefone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Data de Atualização",
+              "displayName": "Data de Atualização",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        848,
+        144
+      ],
+      "id": "2ab50ff9-8976-46ec-8f3d-5cf22dffd704",
+      "name": "Contato Inválido",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "OhYBLRWngyO2Z1gB",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ $json.delay_gerado }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        672,
+        80
+      ],
+      "id": "93bc358c-1c04-4b5a-8f88-92b8c25f8dc1",
+      "name": "Delay",
+      "webhookId": "86daa08d-856b-4f57-8abc-3f5f5fe08dca"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/17xHVRAgCk0QucpBnG5yMvIj4KKTYqYFjYqTjMMQibpY/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Contatos",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/17xHVRAgCk0QucpBnG5yMvIj4KKTYqYFjYqTjMMQibpY/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": "={{ $('Loop Over Items').item.json.row_number }}",
+            "Status": "Enviado",
+            "Data de Atualização": "={{ $now.format('dd-MM-yyyy') }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Nome",
+              "displayName": "Nome",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Telefone",
+              "displayName": "Telefone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Data de Atualização",
+              "displayName": "Data de Atualização",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        672,
+        208
+      ],
+      "id": "fa292566-bc83-4bbd-96ad-2382a5cfa25b",
+      "name": "Atualizar Status",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "OhYBLRWngyO2Z1gB",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Pega os valores mínimo e máximo do delay\nconst delayMinimo = $('Infos').first().json.delay_minimo;\nconst delayMaximo = $('Infos').first().json.delay_maximo;\n\n// Valida se os valores são números válidos\nif (!delayMinimo || !delayMaximo || isNaN(delayMinimo) || isNaN(delayMaximo)) {\n  throw new Error('Valores de delay mínimo e máximo devem ser números válidos');\n}\n\n// Converte para números (caso venham como string)\nconst min = Number(delayMinimo);\nconst max = Number(delayMaximo);\n\n// Valida se mínimo é menor que máximo\nif (min > max) {\n  throw new Error('Delay mínimo não pode ser maior que o máximo');\n}\n\n// Gera um número aleatório entre min e max (inclusive)\nconst delayAleatorio = Math.floor(Math.random() * (max - min + 1)) + min;\n\nreturn [\n  {\n    json: {\n      delay_gerado: delayAleatorio,\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        528,
+        80
+      ],
+      "id": "616dc13a-5857-441c-aa8c-23b37e175509",
+      "name": "Gerador de Delay"
+    },
+    {
+      "parameters": {
+        "instanceName": "ActiveBackground",
+        "token": "3251BC290B50-4FE9-A78C-A1B3FD64B81B",
+        "options_Create_instance": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        512,
+        192
+      ],
+      "id": "4ec8c686-6c37-40a6-9330-2a8d1aa29a4b",
+      "name": "Enviar texto",
+      "credentials": {
+        "evolutionApi": {
+          "id": "ad3EjBy0FkiYskMI",
+          "name": "Evolution account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-05T00:35:47.130Z",
+      "createdAt": "2025-11-05T00:35:47.130Z",
+      "role": "workflow:owner",
+      "workflowId": "4GrQ49pwDVmkf958",
+      "projectId": "AC5w1KWNzlUPDJxM"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-05T00:35:57.362Z",
+      "createdAt": "2025-11-05T00:35:57.362Z",
+      "id": "DxT3oy1XCLLeyKPC",
+      "name": "Anderson Adelino"
+    },
+    {
+      "updatedAt": "2025-11-05T00:35:57.332Z",
+      "createdAt": "2025-11-05T00:35:57.332Z",
+      "id": "y4UTc67jkwmLA9qd",
+      "name": "Youtube"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-05T02:09:12.618Z",
+  "versionId": "e9d191ac-eec2-404e-8346-6ac7a2ae4e06"
+}
