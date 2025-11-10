@@ -1,0 +1,226 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Scrape a URL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-10T00:59:23.899Z",
+  "id": "JkWn848KhhrY40QY",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "819fb5d7-67f7-451e-be5a-9e8e0073f318",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        16,
+        0
+      ],
+      "id": "0c5ea43f-5f16-4b9a-8415-78e0afd93e38",
+      "name": "Webhook",
+      "webhookId": "819fb5d7-67f7-451e-be5a-9e8e0073f318"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4787bebe-3944-49e8-bfcd-9a96ac7912db",
+              "name": "body.profTexto",
+              "value": "={{ $json.body.profTexto }}",
+              "type": "string"
+            },
+            {
+              "id": "2e81ceac-f5c1-4fd3-a912-077d014df7bf",
+              "name": "body.especializacao",
+              "value": "={{ $json.body.especializacao }}",
+              "type": "string"
+            },
+            {
+              "id": "6dab9be8-82c8-4561-9857-8789b02fb390",
+              "name": "body.cidade",
+              "value": "={{ $json.body.cidade }}",
+              "type": "string"
+            },
+            {
+              "id": "2a180cf6-c6cf-46dc-9861-d9aa25f8d808",
+              "name": "body.estado",
+              "value": "={{ $json.body.estado }}",
+              "type": "string"
+            },
+            {
+              "id": "09ed896f-056c-4a06-9a09-59006351d565",
+              "name": "body.contatosQuery[0]",
+              "value": "={{ $json.body.contatosQuery[0] }} {{ $json.body.contatosQuery[1] }}{{ $json.body.contatosQuery[2] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        272,
+        0
+      ],
+      "id": "1d7fab5e-9a36-4921-8a14-ffcaf05443f5",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "50c97d0f-e8d1-469a-a9c1-d54f7c8465cb",
+              "name": "body.profTexto",
+              "value": "={{ $json.body.profTexto }} {{ $json.body.especializacao }} {{ $json.body.cidade }} {{ $json.body.estado }} {{ $json.body.contatosQuery[0] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        512,
+        0
+      ],
+      "id": "339eeb15-22a6-4cf8-ab89-cedaf2ef4050",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "url": "https://www.googleapis.com/customsearch/v1",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "key",
+              "value": "AIzaSyBeZqJHw0TZm_YO_JnS23vFrZhKMyre_Wo"
+            },
+            {
+              "name": "cx",
+              "value": "b6fbf2d60f34f4587"
+            },
+            {
+              "name": "q",
+              "value": "={{ $json.body.profTexto }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        736,
+        0
+      ],
+      "id": "c2e3c38d-b082-474c-b017-7ffa519e8390",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Acessa o primeiro item (que contém o resultado da busca)\nconst searchResult = $input.item.json;\n\n// Verifica se a busca retornou itens (resultados)\nconst items = searchResult.items;\n\nif (items && items.length > 0) {\n  // Mapeia o array de itens para um formato simplificado\n  const leads = items.map(item => ({\n    titulo: item.title,\n    link: item.link,\n    fonte: item.displayLink // Adiciona o domínio para contexto\n  }));\n\n  // Retorna os resultados em um formato de resposta (JSON)\n  return [{\n    json: {\n      sucesso: true,\n      query: searchResult.queries.request[0].searchTerms,\n      totalResultados: searchResult.searchInformation.formattedTotalResults,\n      leads: leads\n    }\n  }];\n\n} else {\n  // Retorna uma mensagem de erro ou sem resultados\n  return [{\n    json: {\n      sucesso: false,\n      mensagem: \"Nenhum resultado de busca relevante encontrado.\",\n      query: searchResult.queries.request[0].searchTerms\n    }\n  }];\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        992,
+        0
+      ],
+      "id": "46a12528-b74f-4780-8e6f-f94d423825e0",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-olostep.olostepScrape",
+      "typeVersion": 1,
+      "position": [
+        1216,
+        0
+      ],
+      "id": "969e8298-6c46-482c-9f55-333ac2e66a10",
+      "name": "Scrape a URL"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-10T00:59:23.899Z",
+      "createdAt": "2025-11-10T00:59:23.899Z",
+      "role": "workflow:owner",
+      "workflowId": "JkWn848KhhrY40QY",
+      "projectId": "AC5w1KWNzlUPDJxM"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-10T02:17:20.900Z",
+  "versionId": "ab35ac3b-2b52-457f-8369-f670ca86fbb8"
+}
