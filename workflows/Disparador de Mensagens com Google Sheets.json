@@ -672,16 +672,16 @@
   "staticData": null,
   "tags": [
     {
-      "updatedAt": "2025-11-05T00:35:57.362Z",
-      "createdAt": "2025-11-05T00:35:57.362Z",
-      "id": "DxT3oy1XCLLeyKPC",
-      "name": "Anderson Adelino"
-    },
-    {
       "updatedAt": "2025-11-05T00:35:57.332Z",
       "createdAt": "2025-11-05T00:35:57.332Z",
       "id": "y4UTc67jkwmLA9qd",
       "name": "Youtube"
+    },
+    {
+      "updatedAt": "2025-11-05T00:35:57.362Z",
+      "createdAt": "2025-11-05T00:35:57.362Z",
+      "id": "DxT3oy1XCLLeyKPC",
+      "name": "Anderson Adelino"
     }
   ],
   "triggerCount": 0,
